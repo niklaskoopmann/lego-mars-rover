@@ -15,4 +15,6 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | M06 | Dokumentation mit BrickLink Studio (Version 2.0.10) | 08.12.2019 |
 
 ### Benötigte Teile
-- Joint 62520c01
+- 2x Joint 62520c01
+- 1x Electric, Motor - EV3, Medium 99455
+- Gear Racks für die Lenkung
