@@ -22,6 +22,4 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01
-- 1x Electric, Motor - EV3, Medium 99455
-- Gear Racks für die Lenkung
 - Axles with stops
