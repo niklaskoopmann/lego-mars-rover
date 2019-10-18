@@ -18,7 +18,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | M06 | Dokumentation mit BrickLink Studio (Version 2.0.10) | 08.12.2019 | TODO |
 
 #### Backlog
-- Aktuatoren via BrickPi ansprechen (prototypisch)
+- Aktuatoren via BrickPi ansprechen (prototypisch) -> Fertigstellung M01
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01
