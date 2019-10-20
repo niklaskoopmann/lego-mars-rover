@@ -10,7 +10,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | # | Meilenstein | Termin | Status |
 | --- | --- | --- | --- |
 | M01 | Basis-Installation und Konfiguration Raspberry Pi | 20.10.2019 | DONE |
-|     | Entwurf in BrickLink Studio | 20.10.2019 | WIP |
+|     | Entwurf in BrickLink Studio | 20.10.2019 | 40 % |
 | M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | TODO |
 | M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | TODO |
 | M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | TODO |
@@ -24,6 +24,8 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
   - prototypische Aktuatorsteuerung über Python-Script (Anschluss Batterie-Pack, Nutzung der BrickPi3-Library)
 
 #### Backlog
+- Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: vordere zwei Achsen und Lenkung Vorderachse
+![alt text](Mars_Rover_Front_Axle_Draft.png "Mars Rover Front Axle - Status Draft")
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01
