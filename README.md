@@ -10,7 +10,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | # | Meilenstein | Termin | Status |
 | --- | --- | --- | --- |
 | M01 | Basis-Installation und Konfiguration Raspberry Pi | 20.10.2019 | DONE |
-|     | Entwurf in BrickLink Studio | 20.10.2019 | 50 % |
+| M01.1 | Entwurf in BrickLink Studio | 27.10.2019 | 0 % |
 | M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | TODO |
 | M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | TODO |
 | M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | TODO |
