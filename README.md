@@ -30,6 +30,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 #### Backlog
 - Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: vordere zwei Achsen und Lenkung Vorderachse
 ![alt text](Images/Mars_Rover_Front_Axle_Draft.png "Mars Rover Front Axle - Status Draft")
+- Greifarm und -steuerung 
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01 (erhalten)
