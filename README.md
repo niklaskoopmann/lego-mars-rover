@@ -1,7 +1,7 @@
 
 # Studienarbeit: Mars Science Laboratory Curiosity Rover
 
-![alt text](mars_rover.jpg "Mars Rover")
+![alt text](Images/mars_rover.jpg "Mars Rover")
 
 Repository contains LaTeX sources of the paper as well as Python source code written to make the Rover rove. :rocket:
 
@@ -25,7 +25,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 
 #### Backlog
 - Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: vordere zwei Achsen und Lenkung Vorderachse
-![alt text](Mars_Rover_Front_Axle_Draft.png "Mars Rover Front Axle - Status Draft")
+![alt text](Images/Mars_Rover_Front_Axle_Draft.png "Mars Rover Front Axle - Status Draft")
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01
