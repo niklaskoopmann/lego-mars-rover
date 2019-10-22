@@ -28,8 +28,8 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
   - Ausführung bestimmter Funktionen nach Erkennung der o. g. Kommandos -> vorerst Dummys mit Konsolenausgabe
 
 #### Backlog
-- Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: vordere zwei Achsen und Lenkung Vorderachse
-![alt text](Images/Mars_Rover_Front_Axle_Draft.png "Mars Rover Front Axle - Status Draft")
+- Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: Separat angetriebenes und gelenktes einzelnes Rad
+![alt text](Images/Mars_Rover_Single_Wheel.png "Mars Rover Single Wheel - Status Draft")
 - Greifarm und -steuerung 
 
 ### Benötigte Teile (unverbindlich)
@@ -40,3 +40,4 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 - 6x Radadapter 92909 (zu bestellen)
 - 5x EV3-Motor Medium (Hr. Benseler)
 - 12x Liftarm Double Bent 32009
+- ca. 56x Pin Connector 75535
