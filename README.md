@@ -37,3 +37,6 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 - Axles with stops (teilweise vorhanden)
 - 6x Stoßdämpfer (bestellt)
 - 6x Rad-Reifen-Kombi 23799/23800 (zu bestellen)
+- 6x Radadapter 92909 (zu bestellen)
+- 5x EV3-Motor Medium (Hr. Benseler)
+- 12x Liftarm Double Bent 32009
