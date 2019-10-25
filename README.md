@@ -10,7 +10,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | # | Meilenstein | Termin | Status |
 | --- | --- | --- | --- |
 | M01 | Basis-Installation und Konfiguration Raspberry Pi | 20.10.2019 | DONE |
-| M01.1 | Entwurf in BrickLink Studio | 27.10.2019 | 10 % |
+| M01.1 | Entwurf in BrickLink Studio | 27.10.2019 | 50 % |
 | M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | TODO |
 | M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | TODO |
 | M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | TODO |
@@ -28,9 +28,10 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
   - Ausführung bestimmter Funktionen nach Erkennung der o. g. Kommandos -> vorerst Dummys mit Konsolenausgabe
 
 #### Backlog
-- Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: Separat angetriebenes und gelenktes einzelnes Rad
+- Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: Drei Achsen, pro Achse zwei angetriebene und gelenkte Räder, rudimentärer Körper inklusive Kamerahalterung 
 ![alt text](Images/Mars_Rover_Single_Wheel.png "Mars Rover Single Wheel - Status Draft")
 - Greifarm und -steuerung 
+- ggf. abweichen vom BrickPi zu MotoPi (https://www.reichelt.de/raspberry-pi-shield-motopi-motorsteuerung-rpi-shd-motopi-p202551.html)
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01 (erhalten)
@@ -41,3 +42,4 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 - 5x EV3-Motor Medium (Hr. Benseler)
 - 12x Liftarm Double Bent 32009
 - ca. 56x Pin Connector 75535
+- diverse weitere Teile -> zeitnah ergänzen
