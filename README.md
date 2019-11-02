@@ -11,7 +11,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | --- | --- | --- | --- |
 | M01 | Basis-Installation und Konfiguration Raspberry Pi | 20.10.2019 | DONE |
 | Mx01 | Entwurf in BrickLink Studio | 27.10.2019 | DONE |
-| M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | WIP |
+| M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | DONE |
 | M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | TODO |
 | M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | TODO |
 | M05 | Sechsrädriges Antriebssystem für unebenes Gelände | 01.12.2019 | TODO |
@@ -26,12 +26,18 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
   - Einbindung einer Spracherkennungs-Bibliothek
   - Erkennung der englischen Kommandos "Start", "Stop", "Move Left", "Move Right"
   - Ausführung bestimmter Funktionen nach Erkennung der o. g. Kommandos -> vorerst Dummys mit Konsolenausgabe
+- DOD-M03:
+  - Installation der Pixy-Cam in einer erhöhten und um 22,5° nach vorn geneigten Position
+  - Aufnahme eines Video-Streams
+  - Zugriff auf Stream via Python-Script
 
 #### Backlog
 - Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: Review ausstehend
 ![alt text](Images/Mars_Rover_Updated.png "Mars Rover Curiosity")
 - Greifarm und -steuerung 
 - ggf. abweichen vom BrickPi zu MotoPi (https://www.reichelt.de/raspberry-pi-shield-motopi-motorsteuerung-rpi-shd-motopi-p202551.html)
+- USB-Soundkarte bestellen -> Mikrofon an den Pi anschließen
+- Räder des Rovers ersetzen
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01 (erhalten)
