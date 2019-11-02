@@ -21,10 +21,25 @@ try:
     print("[VOICE] Set minimum energy threshold to {}".format(r.energy_threshold))
     print("[VOICE] Say something!")
     while True:
-        with m as source: audio = r.listen(source, None, 2, snowboy_config)
+        with m as source: audio = r.listen(source, 10, 3, None) # add Snowboy config here!
         try:
             # recognize speech using Sphinx to interpret locally
             value = r.recognize_sphinx(audio)
+
+            if "stop" in value:
+                stop_driving()
+            elif "start" in value:
+                drive_forward()
+            elif "move" in value:
+                if "left" in value:
+                    turn_left()
+                elif "right" in value:
+                    turn_right()
+                else:
+                    raise sr.UnknownValueError("[VOICE] [ERROR] Direction not recognized.")
+            else:
+                raise sr.UnknownValueError("[VOICE] [ERROR] Input not recognized.")
+
         except sr.UnknownValueError:
             print("[VOICE] [ERROR] Unknown Value!")
         except sr.RequestError as e:
