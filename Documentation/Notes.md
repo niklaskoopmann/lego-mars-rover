@@ -5,6 +5,8 @@
 ## Einleitung
 
 - Beschreibung der grundlegenden Zusammenhänge
+    - Research Lab for Deep Learning
+
 - Einordnung in bestehende Forschung
 
 ### Motivation
