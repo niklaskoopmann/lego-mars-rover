@@ -2,7 +2,7 @@ import speech_recognition as sr
 
 r = sr.Recognizer()
 m = sr.Microphone()
-snowboy_config = ("./Snowboy/ubuntu1404-x86_64-1.1.1", ["./Snowboy/Hey Rover.pmdl"])
+snowboy_config = ("./Snowboy/rpi-arm-raspbian-8.0-1.1.1", ["./Snowboy/Hey Rover.pmdl"])
 
 def drive_forward():
     print("[DRIVE] Yes, Master! Driving...")
@@ -21,7 +21,7 @@ try:
     print("[VOICE] Set minimum energy threshold to {}".format(r.energy_threshold))
     print("[VOICE] Say something!")
     while True:
-        with m as source: audio = r.listen(source, 10, 3, None) # add Snowboy config here!
+        with m as source: audio = r.listen(source, 10, 3, snowboy_config) # add Snowboy config here!
         try:
             # recognize speech using Sphinx to interpret locally
             value = r.recognize_sphinx(audio)
