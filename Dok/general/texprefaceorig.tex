@@ -1,0 +1,294 @@
+\documentclass[ %
+%draft,
+12pt, 				% % % Schriftgröße 12 Punkte
+a4paper,			% % % Papierformat DIN A4 210x297mm
+oneside,			% % % Einseitiger Druck
+openany, 			% % % Kann auf der linken oder rechten Seite beginnen (bei onside nicht notwendig)
+titlepage,			% % % Der Titel kommt auf eine separate Seite
+openbib,			% % % Verwendet openbib für die Literatur
+listof=totoc,		% % % Zeigt Verzeichnisse Tabellenverzeichnis und Abbildungsverzeichnis im Inhalt an
+bibliography=totoc,	% % % Zeigt das Literaturverzeichnis im Inhaltsverzeichnis an
+numbers=noenddot,	% % % Lässt den abschließenden Punkt bei Abschnittsnummern weg
+headsepline,		% % % Trennlinie zwischen Kopfzeile und Inhalt
+headings=onelinechapter, % Kompakte Kapitelüberschriften
+]{scrbook}			% % %  KOMA-Script für den Dokumententyp Buch
+
+
+% % % Für eine saubere Encodierung und die deutsche Sprache
+\usepackage[utf8]{inputenc}		% Lese UTF-8 Zeichen als Eingabe
+\usepackage[T1]{fontenc}		% Schriftkodierung
+\usepackage[ngerman]{babel}		% Deutsche Lokalisierung -> Standardbegriffe in Deutsch anstelle von Englisch
+\usepackage{textcomp}			% Zusätzliche Symbole
+%\usepackage[charter]{mathdesign} % Mathefont
+
+% root document
+% !TeX root = ../Projektarbeit.tex
+
+% Globale Variablen, insbesondere für die Titelseite
+\def\title{Möglichkeiten der Implementierung und Nutzung von RESTful APIs in Anwendungsarchitekturen auf IBM z/OS (Mainframe)}		% Titel der Arbeit
+\def\titleFrontpage{Möglichkeiten der Implementierung und Nutzung \\von RESTful APIs in Anwendungsarchitekturen \\auf IBM z/OS (Mainframe)}
+\def\doctype{Projektarbeit 1 (T2\_1000)}	% Art des Dokumentes, z.B. Studienarbeit, Bachelorarbeit, Bericht, ...
+\def\studiengang{Angewandte Informatik}		% Studiengang
+\def\author{Niklas Koopmann}				% Autor des Dokumentes
+\def\matrikelNr{9742503}					% Autor des Dokumentes
+\def\kursKurz{MOS-TINF17B}					% Autor des Dokumentes
+\def\bearbeitungsZeit{10 Wochen}			% Bearbeitsungszeitraum
+\def\ausbildungsfirma{Deutsche Bundesbank} 	% Ausbildungsfirma
+\def\betreuerFirma{Eric Zenker}				% Betreuer der Ausbildungsfirma
+%\def\betreuerDH{Titel Vorname Nachname}		% Betreuer der Dualen Hochschule
+\def\abgabeDatum{\today}					% Abgabedatum der Arbeit
+% Späteste Abgabe bei Uni: 09.09.2016 (Ende 1. Woche des 3. Semesters)
+
+
+% % % Abstände bei Kapitelüberschriften ändern
+\renewcommand*{\chapterheadstartvskip}{\vspace*{-5mm}}   % % % Freiraum vor der Überschrift
+%\renewcommand*{\chapterheadendvskip}{\vspace{1cm}}       % % % Freiraum nach der Überschrift
+
+
+% moved: Links im Dokument (to bottom)
+
+\usepackage{scrhack}		 % % % Workaround für \float@addtolists Fehler
+
+% % % Für das Literaturverzeichnis
+\usepackage[
+%style=authoryear-icomp,	 % % % Zitierstil - nur 1 verwenden!
+%style=numeric,				 % % % Zitierstil - nur 1 verwenden!
+style=authoryear,			 % % % Zitierstil - nur 1 verwenden!
+isbn=true,                   % % % ISBN nicht anzeigen oder Verbergen, gleiches geht mit nahezu allen anderen Feldern
+pagetracker=true,            % % % ebd. bei wiederholten Angaben (false=ausgeschaltet, page=Seite, spread=Doppelseite, true=automatisch)
+maxbibnames=5,               % % % maximale Namen, die im Literaturverzeichnis angezeigt werden
+maxcitenames=3,              % % % maximale Namen, die im Text angezeigt werden, ab 4 wird "u.a." nach den ersten Autor angezeigt
+autocite=inline,             % % %  regelt Aussehen für \autocite (inline=\parancite)
+block=space,                 % % % kleiner horizontaler Platz zwischen den Feldern
+backref=true,                % % % Seiten anzeigen, auf denen die Referenz vorkommt
+backrefstyle=three+,         % % % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
+date=short,                  % % % Datumsformat
+backend=bibtex,	             % % % Beunutze das biber-Backend zur Erstellung an Stelle von bibtex
+firstinits=true
+]{biblatex}
+\setlength{\bibitemsep}{1em}	% % % Abstand zwischen den Literaturangaben
+\setlength{\bibhang}{2em}		% % % Einzug nach jeweils erster Zeile
+\addbibresource{literatur.bib}	% % % Literaturdatenbank einlesen
+\bibliography{literatur}        % % % Literaturdatenbank einlesen
+
+\usepackage{xcolor}
+\definecolor{monospacebackgroundcolor}{RGB}{230,230,240}
+\definecolor{monospacecolor}{RGB}{50,0,0}
+
+
+% % % Für das Abkürzungsverzeichnis:
+\usepackage[footnote]{acronym}
+
+
+
+% % % Schriften und Layout
+\usepackage{lmodern}		% Standardschriftart von Latex
+\usepackage[expansion=true, protrusion=true]{microtype}	% Abstände verbessern
+\usepackage[babel,german=quotes]{csquotes}
+
+
+
+% % % Für die Einbindung von Grafiken
+\usepackage{graphicx}	% Für Grafiken allgemein
+\usepackage{epstopdf}	% Für *.eps-Grafiken mit pdfLaTeX
+%\usepackage{svg}		% Für *.svg-Grafiken
+\usepackage{caption}	% Verbesserungen bei der Beschriftung von Bildern und Tabellen
+%\usepackage{float}		% Verbesserung für fließende Objekte
+%\usepackage[extendedchars, encoding, multidot, space, filenameencoding=utf8]{grffile}
+\usepackage{wrapfig}
+
+
+
+% % % Für Tabellen
+\usepackage{typearea}	
+\usepackage{array}		% Basispaket für Tabellen
+\usepackage{ltxtable}	% Erweiterung für Tabellen
+\usepackage{booktabs}	% Verbesserung für die Darstellung von Tabellen
+\usepackage{enumitem}
+\usepackage{makecell}	% \thead-Befehl in Tabellen
+\usepackage{multirow}
+
+
+% % % URLs ordentlich darstellen
+\usepackage{url}
+
+% % % Blindtextgenerator, wird in Dokumenten normalerweise nich benötigt
+\usepackage{blindtext}
+
+% % % Seitenabmessungen und Randabstand
+\usepackage[ %
+%width=210.00mm, height=297.00mm, %
+left=2.80cm, right=2.60cm, top=2.60cm, bottom=2.60cm]{geometry}
+
+
+
+% % % Für Mathe:
+\usepackage{amsmath}	% Mathematische Konstrukte
+\usepackage{amsfonts}	% Mathematische Schriftarten
+\usepackage{amssymb}	% Mathematische Symbole
+
+
+
+% % % Für Quelltexte
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{colordcodebackground}{rgb}{0.9,0.9,0.9}
+\definecolor{colorcodegreen}{rgb}{0,0.4,0}
+\definecolor{colorcodegrey}{rgb}{0.4,0.4,0.4}
+\definecolor{colorcodestring}{rgb}{0.58,0.0,0.82}
+\definecolor{colorcodekeys}{rgb}{0.0,0.0,0.8}
+\definecolor{colorcoderule}{rgb}{0.65,0.65,0.65}
+
+\lstset{ %
+	backgroundcolor=\color{colordcodebackground},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+	basicstyle=\ttfamily\footnotesize,  % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{colorcodegreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=single,	                 % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{colorcodekeys},       % keyword style
+	%language=Java,                	 % the language of the code
+	otherkeywords={},           % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\color{colorcodegrey}, 	 % the style that is used for the line-numbers
+	rulecolor=\color{colorcoderule},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{colorcodestring},     % string literal style
+	tabsize=4,	                   	 % sets default tabsize to 2 spaces
+	title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+	float
+} % max 73 Zeichen je Zeile
+\renewcommand{\lstlistlistingname}{Quelltextverzeichnis}
+\renewcommand{\lstlistingname}{Quelltext}
+% http://tex.stackexchange.com/questions/89574/language-option-supported-in-listings
+\lstdefinelanguage{js}{
+	keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]',
+	morestring=[b]",
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	commentstyle=\color[rgb]{0,0.4,0}\ttfamily,
+	stringstyle=\color[rgb]{0.7,0.0,0.8}\ttfamily,
+	sensitive=true
+}
+
+
+% % % Kopf- und Fußzeile
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadings
+%\ifoot{\leftmark}{\leftmark}
+\ifoot{}{}
+%\ihead{\rightmark}{\rightmark} % % % Rightmark oben links
+\ohead{\rightmark}{\rightmark} % % % Rightmark oben links
+%\ohead[\pagemark]{\pagemark}  % % % Seitenzahl oben rechts
+\ofoot[\pagemark]{\pagemark}   % % % Seitenzahl unten rechts
+\cfoot[]{}					   % % % Leere Mitte unten
+\automark[section]{chapter}	   % % % [Leftmark] und {Rightmark} setzen
+
+
+
+
+
+
+
+% % % Layout-Optionen:
+\renewcommand*{\headfont}{\normalfont}
+%\renewcommand*{\multicitedelim}{\addsemicolon\space}
+%\renewcommand*{\headrulewidth}{0pt}
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+% % % Globaler Zeilenabstand: 1,5-zeilig
+\usepackage[onehalfspacing]{setspace}
+%\setlength{\parskip}{1.5em}
+\recalctypearea
+
+
+
+% % % Makrobefehle
+
+% Verweis 
+% Befehl \see{label}
+% #1 : reflabel
+\def\see#1{ %
+	\text{($\rightarrow$}\space\nameref{#1}\space\text{auf S.}\space\pageref{#1}\text{)}
+}
+
+% Bild
+% Befehl \bild{Bilddatei}{Beschriftung}{label}
+% #1 : Bilddatei
+% #2 : Beschriftung / Bildunterschrift
+% #3 : Label
+\def\bild#1#2#3{ %
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.9\textwidth]{#1}
+%		\vspace{5mm}
+		\caption{#2}
+		\label{#3}
+	\end{figure}
+}
+
+% Code
+% Befehl \code{Quelldatei}{Beschriftung}{label}{Sprache}
+\def\code#1#2#3#4{ %
+	\begin{center}
+	\centering
+	\lstset{language=#4,caption={#2},label=#3}
+	\singlespacing
+	\lstinputlisting[language=#4]{#1}
+	\end{center}
+}
+
+% Monospace
+% Befehl \mono{Text}
+\newcommand{\mono}[1]{
+	\texttt{\colorbox{monospacebackgroundcolor}{\textcolor{monospacecolor}{#1}}}
+	%\texttt{\textcolor{monospacecolor}{#1}}
+	%\texttt{#1}
+}
+
+\newcommand{\signature}[1]{%
+	\parbox{\textwidth}{
+		%\centering #3 \today\\
+		%\vspace{2cm}
+		
+		\parbox{7cm}{
+			\centering
+			\rule{6cm}{1pt}\\
+			Ort, Datum 
+		}
+		\hfill
+		\parbox{7cm}{
+			\centering
+			\rule{6cm}{1pt}\\
+			#1
+		}
+	}
+} 
+
+%% better: (general command to vertically center horizontal material)
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+	\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+
+% % % Links im Dokument erzeugen
+%\usepackage[colorlinks, allcolors=blue, breaklinks]{hyperref}
+\usepackage[colorlinks, allcolors=black, breaklinks]{hyperref}
+%\usepackage[colorlinks, linkcolor = black, citecolor = black, filecolor = black, urlcolor = blue]{hyperref} 
