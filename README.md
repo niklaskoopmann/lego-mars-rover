@@ -12,7 +12,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | M01 | Basis-Installation und Konfiguration Raspberry Pi | 20.10.2019 | DONE |
 | Mx01 | Entwurf in BrickLink Studio | 27.10.2019 | DONE |
 | M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | DONE |
-| M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | TODO |
+| M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | DONE |
 | M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | TODO |
 | M05 | Sechsrädriges Antriebssystem für unebenes Gelände | 01.12.2019 | TODO |
 | M06 | Dokumentation mit BrickLink Studio (Version 2.0.10) | 08.12.2019 | TODO |
@@ -38,6 +38,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 - ggf. abweichen vom BrickPi zu MotoPi (https://www.reichelt.de/raspberry-pi-shield-motopi-motorsteuerung-rpi-shd-motopi-p202551.html)
 - USB-Soundkarte bestellen -> Mikrofon an den Pi anschließen
 - Räder des Rovers ersetzen
+- PixyCam mithilfe von blauen 1x1-LEGO-Blöcken (-> Wasserobjekte") trainieren, sobald diese eintreffen
 
 ### Benötigte Teile (unverbindlich)
 - 2x Joint 62520c01 (erhalten)
