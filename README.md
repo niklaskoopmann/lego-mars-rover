@@ -13,7 +13,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | Mx01 | Entwurf in BrickLink Studio | 27.10.2019 | DONE |
 | M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | DONE |
 | M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | DONE |
-| M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | WIP |
+| M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | 33 % |
 | M05 | Sechsrädriges Antriebssystem für unebenes Gelände | 01.12.2019 | TODO |
 | M06 | Dokumentation mit BrickLink Studio (Version 2.0.10) | 08.12.2019 | TODO |
 
@@ -30,26 +30,25 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
   - Installation der Pixy-Cam in einer erhöhten und um 22,5° nach vorn geneigten Position
   - Aufnahme eines Video-Streams
   - Zugriff auf Stream via Python-Script
+- DOD-M04:
+  - Pixy-Kamera erkennt blaue 1x1-LEGO-Blöcke nach erfolgreichem Training bei mindestens 24 FPS
+  - Sprachausgabe des Beispielsatzes "Yes, Master.", der als Antwort auf zuvor implementierte Sprachkommandos entgegnet wird, mittels pyttsx3 (Python-TTS-Bibliothek) und espeak (Unix-TTS-Engine)
 
 #### Backlog
 - Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: Review ausstehend
 ![alt text](Images/Mars_Rover_Updated.png "Mars Rover Curiosity")
 - Greifarm und -steuerung 
 - ggf. abweichen vom BrickPi zu MotoPi (https://www.reichelt.de/raspberry-pi-shield-motopi-motorsteuerung-rpi-shd-motopi-p202551.html)
-- USB-Soundkarte bestellen -> Mikrofon an den Pi anschließen
-- Räder des Rovers ersetzen
-- PixyCam mithilfe von blauen 1x1-LEGO-Blöcken (-> Wasserobjekte") trainieren, sobald diese eintreffen
+- passendes Mikrofon finden und ggf. bestellen
+- Räder des Rovers bestellen
+- PixyCam mithilfe von blauen 1x1-LEGO-Blöcken (-> "Wasserobjekte") trainieren, sobald diese eintreffen
 
 ### Benötigte Teile (unverbindlich)
-- 2x Joint 62520c01 (erhalten)
-- Axles with stops (teilweise vorhanden)
-- 6x Stoßdämpfer (bestellt)
 - 6x Rad-Reifen-Kombi 23799/23800 (zu bestellen)
 - 6x Radadapter 92909 (zu bestellen)
 - 5x EV3-Motor Medium (Hr. Benseler)
 - 12x Liftarm Double Bent 32009
 - ca. 56x Pin Connector 75535
-- diverse weitere Teile -> zeitnah ergänzen
 
 ### Erstattung für privat ausgelegte Anschaffungen
 - USB-Soundkarte Sabrent (EUR 5,94)
