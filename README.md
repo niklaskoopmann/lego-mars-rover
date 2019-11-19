@@ -35,7 +35,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
   - Sprachausgabe des Beispielsatzes "Yes, Master.", der als Antwort auf zuvor implementierte Sprachkommandos entgegnet wird, mittels pyttsx3 (Python-TTS-Bibliothek) und espeak (Unix-TTS-Engine)
 
 #### Backlog
-- Fertigstellung des Entwurfs in BrickLink-Studio - Aktueller Status: Review ausstehend
+- Sicherstellung der "Unumkippbarkeit" des Rovers -> BrickLink-Modell überarbeiten
 ![alt text](Images/Mars_Rover_Updated.png "Mars Rover Curiosity")
 - Greifarm und -steuerung 
 - ggf. abweichen vom BrickPi zu MotoPi (https://www.reichelt.de/raspberry-pi-shield-motopi-motorsteuerung-rpi-shd-motopi-p202551.html)
