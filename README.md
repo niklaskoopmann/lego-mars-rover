@@ -13,7 +13,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 | Mx01 | Entwurf in BrickLink Studio | 27.10.2019 | DONE |
 | M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | DONE |
 | M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | DONE |
-| M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | 33 % |
+| M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | 66 % |
 | M05 | Sechsrädriges Antriebssystem für unebenes Gelände | 01.12.2019 | TODO |
 | M06 | Dokumentation mit BrickLink Studio (Version 2.0.10) | 08.12.2019 | TODO |
 
@@ -52,3 +52,4 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 
 ### Erstattung für privat ausgelegte Anschaffungen
 - USB-Soundkarte Sabrent (EUR 5,94)
+- diverse Teile von BricksWorld XXL (EUR 3,74)
