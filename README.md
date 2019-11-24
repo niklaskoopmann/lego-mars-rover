@@ -36,7 +36,7 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 
 #### Backlog
 - Sicherstellung der "Unumkippbarkeit" des Rovers -> BrickLink-Modell überarbeiten
-![alt text](Images/Mars_Rover_Updated.png "Mars Rover Curiosity")
+![alt text](Images/Mars_Rover_V3.png "Mars Rover Curiosity")
 - Greifarm und -steuerung 
 - ggf. abweichen vom BrickPi zu MotoPi (https://www.reichelt.de/raspberry-pi-shield-motopi-motorsteuerung-rpi-shd-motopi-p202551.html)
 - passendes Mikrofon finden und ggf. bestellen
