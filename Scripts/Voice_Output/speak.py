@@ -1,7 +1,7 @@
 import pyttsx3
 
 
-engine = pyttsx3.init()
+engine = pyttsx3.init('dummy')
 
 
 def speak(text_to_say):

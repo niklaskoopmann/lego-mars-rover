@@ -1,4 +1,3 @@
-
 # Studienarbeit: Mars Science Laboratory Curiosity Rover
 
 ![alt text](Images/mars_rover.jpg "Mars Rover")
@@ -54,3 +53,5 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 - USB-Soundkarte Sabrent (EUR 5,94)
 - diverse Teile von BricksWorld XXL (EUR 3,74)
 - Teile von 20th Century Bricks (EUR 4,13)
+- Teile (u. a. Felgen) von Limpensbricks (EUR 78,86)
+- Solarmodul von Conrad (EUR 9,99)
