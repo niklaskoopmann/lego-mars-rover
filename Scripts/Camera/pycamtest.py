@@ -2,15 +2,11 @@
 # using picamera
 # https://maker.pro/raspberry-pi/tutorial/how-to-create-object-detection-with-opencv
 
-from time import sleep
 import cv2
-from picamera.array import PiRGBArray
-from picamera import PiCamera
 import numpy as np
-from skimage import morphology
-
-def nothing(x):
-    pass
+from picamera import PiCamera
+from picamera.array import PiRGBArray
+# from skimage import morphology
 
 camera = PiCamera()
 camera.resolution = (640, 480)
