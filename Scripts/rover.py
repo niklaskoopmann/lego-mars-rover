@@ -4,4 +4,7 @@ from Actuator import actuator_control
 
 print ("Hello World!")
 
-recognize()
+#recognize()
+
+speak("Yes Master. I will drive.")
+#actuator_control.test_drive()
