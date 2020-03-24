@@ -4,6 +4,7 @@
 \section{Installation und Konfiguration Raspberry Pi}
 \label{sec:inst_konf_raspi}
 
+
 - Raspberry Pi 3 Model B Plus Rev 1.3
 
 - Dexter Industries Raspbian for Robots -> Raspbian-basierte Distribution mit zusätzlichen vorinstallierten Anwendungen und Treibern -> unter anderem für den BrickPi von Dexter Industries
@@ -12,6 +13,21 @@
 \label{sec:inst_konf_kamera}
 
 Für die Videoeingabe wird die originale Raspberry Pi Camera V2 genutzt.
+Die Aufnahmen erfolgen mit einer Auflösung von $1280 \times 720$ Pixeln und einer Frequenz von 60 Hz, sodass Wasserobjekte auch während der Fahrt gut erkannt werden können.
+
+\begin{wrapfigure}{l}{0.25\textwidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{../Images/3005.png}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: \url{https://www.bricklink.com/v2/catalog/catalogitem.page?P=3005\&C=7}
+	}
+	\captionsetup{format=plain}
+	\caption{Blauer LEGO-Stein 3005}
+	\label{fig:lego3005}
+\end{wrapfigure}
 
 Die Objekterkennung für Wasserobjekte erfolgt mithilfe der Programmbibliotheken picamera und OpenCV.
 Erstere stellt eine Schnittstelle zwischen der Raspberry-Pi-Kamera und Python zur Verfügung.
@@ -20,3 +36,12 @@ Die Objekte werden auf Basis ihrer blauen Farbe erkannt, da sich diese deutlich 
 Letztere sei eine \enquote{predominantly yellowish brown color with only subtle variation} \cite{maki1999}.
 Die LEGO-Steine, welche als Wasserobjekte fungieren, haben die LEGO-Farb-ID $7$.
 Diese korrespondiert mit dem Farbcode \#0057A6 in Hexadezimaldarstellung.
+Ein solcher LEGO-Stein ist in Abbildung \ref{fig:lego3005} dargestellt.
+
+Da eine farbwertbasierte Erkennung der Wasserobjekte genutzt wird, entfällt das Trainieren eines Erkennungsalgorithmus, wie es bei einem neuronalen Netz nötig wäre.
+Die Farbeigenschaften des LEGO-Steins werden in Komponenten für rote, grüne und blaue Farbanteile aufgeteilt und in der Konfiguration hinterlegt.
+Das Python-Skript berechnet für die \acs{rgb}-Farbangaben die entsprechenden \acs{hsv}-Werte.
+In letzterer Darstellung ist die Information über tatsächliche Farbe nur noch im Hue-Wert ($0$ bis $255$) hinterlegt, sodass für diesen eine bestimmte Abweichung (Standard: $\pm 10$) definiert werden kann.
+Die Sättigung (Saturation) und der Hellwert (Value) (beide ebenfalls von $0$ bis $255$ definiert) werden in einem breiten Spektrum toleriert:
+Standardmäßig lässt das Skript hier Werte von mindestens $80$ und höchstens $255$ zu.
+Mithilfe dieser Parameter wird eine solide Erkennung der Präsenz der LEGO-Steine gewährleistet.
