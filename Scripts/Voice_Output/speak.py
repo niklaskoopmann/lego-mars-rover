@@ -12,9 +12,13 @@ def speak(text_to_say):
     engine.say(text_to_say)
     engine.runAndWait()
 
-speak("Nice tits, get in the truck.")
+#speak("Nice tits, get in the truck.")
 #speak("Yes, Master.")
 #speak("Water found!")
 #speak("The quick brown fox jumped over the lazy dog.")
 
-engine.stop()
+def water_found():
+    speak("Water found!")
+
+def stop_tts_engine():
+    engine.stop()

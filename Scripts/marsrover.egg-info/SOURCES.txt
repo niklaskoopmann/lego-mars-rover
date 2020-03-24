@@ -1,0 +1,5 @@
+setup.py
+marsrover.egg-info/PKG-INFO
+marsrover.egg-info/SOURCES.txt
+marsrover.egg-info/dependency_links.txt
+marsrover.egg-info/top_level.txt
