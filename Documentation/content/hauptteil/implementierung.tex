@@ -1,13 +1,18 @@
 \chapter{Implementierung}
 \label{chp:implementierung}
 
+In diesem Kapitel wird die gesamte Systemumgebung um das Steuerelement in Form eines Raspberry Pi beschrieben und erläutert.
+
+
 \section{Installation und Konfiguration Raspberry Pi}
 \label{sec:inst_konf_raspi}
 
-
-- Raspberry Pi 3 Model B Plus Rev 1.3
-
-- Dexter Industries Raspbian for Robots -> Raspbian-basierte Distribution mit zusätzlichen vorinstallierten Anwendungen und Treibern -> unter anderem für den BrickPi von Dexter Industries
+Die Steuerung des Mars-Rover-Modells erfolgt zentral über einen Raspberry Pi 3 Model B Plus (Revision 1.3).
+Auf diesem ist die Debian-basierte Distribution Raspbian for Robots der US-amerikanischen Firma Dexter Industries installiert worden.
+Dieses Betriebssystem enthält standardmäßig viele zusätzliche Anwendungen und Treiber vorinstalliert für den Einsatz des Raspberry Pi zur Steuerung von Robotern.
+Insbesondere sind alle benötigten Bibliotheken zur Nutzung der zusätzlichen Platine BrickPi vorinstalliert und -konfiguriert.
+Der BrickPi ist ebenfalls ein Produkt von Dexter Industries und stellt eine Schnittstelle zwischen den verschiedenen LEGO-Mindstorms-Sensoren und -Motoren zum Raspberry Pi bereit.
+Er fungiert dabei auch als Stromquelle für diese sowie für den Raspberry Pi selbst und muss dazu lediglich auf dessen Pins für \acf{gpio} aufgesteckt werden.
 
 \section{Installation und Konfiguration Kamera}
 \label{sec:inst_konf_kamera}
