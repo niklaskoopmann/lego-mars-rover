@@ -13,7 +13,7 @@ keywords = [("start", 1), ("move", 1), ("left", 1), ("right", 1), ("stop", 1)]
 
 def drive_forward_recognized():
     print("[VOICE] Drive command recognized.")
-    #drive_forward()
+    drive_forward(25)
     speak("Yes, Master! I shall drive...")
 
 def stop_driving_recognized():
@@ -23,7 +23,7 @@ def stop_driving_recognized():
 
 def turn_left_recognized():
     print("[VOICE] Left turn command recognized.")
-    #turn_left()
+    turn_left()
     speak("Yes, Master! I am turning left...")
 
 def turn_right_recognized():
@@ -41,7 +41,7 @@ def recognize():
             with m as source: audio = r.listen(source, phrase_time_limit=1) # add Snowboy config here!
             try:
                 # recognize speech using Sphinx to interpret locally
-                value = r.recognize_sphinx(audio, keyword_entries=keywords)
+                value = r.recognize_sphinx(audio)#, keyword_entries=keywords)
                 print("[VOICE] [DEBUG] You said:", value)
     
                 if "stop" in value:
