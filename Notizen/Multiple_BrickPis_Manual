@@ -1,0 +1,18 @@
+from: https://forum.dexterindustries.com/t/brickpi3-can-now-be-stacked/2748
+
+The BrickPi3 hardware was designed to be stack-able, but initially the firmware and drivers didnt support changing the address to allow for multiple BrickPi3s. As of firmware version 1.4.0, the BrickPi3 Firmware (and updated Python drivers) allows you to change the BrickPi3 address, so BrickPi3s can be stacked!
+
+The updated software and firmware is available now. To update the BrickPi3 firmware, only one BrickPi3 can be connected at a time. You can run the DI Update on Raspbian for Robots, or on Raspbian you can follow the BrickPi3 software installation instructions 9 and then the BrickPi3 firmware update instructions 14.
+
+Concerning the hardware configuration, you will not be able to use the acrylic case to enclose a stack of BrickPi3s (you can use the base panel to mount the RPi to Lego, but you wont be able to use the other panels). You will need to connect a battery pack to each BrickPi3 that you want the motors to run on.
+
+Concerning the software configuration in Python, prior to creating each BrickPi3 instance, you need to set each BrickPi3 to a unique address using the brickpi3.set_address() function. For example, brickpi3.set_address(2, ) would set all attached BrickPi3s to address 2 (regardless of their current address), and brickpi3.set_address(3, 192A0F96514D4D5438202020FF080C23) would set BrickPi3 with ID 192A0F96514D4D5438202020FF080C23 to address 3 (regardless of its current address). The default address is 1, and the new address is volatile (it will be forgotten when the BrickPi3 power is disconnected). To create a BrickPi3 instance for each BrickPi3, you can specify the address when you create it. For example, BP3_2 = brickpi3.BrickPi3(2) would create a BrickPi3 instance called BP3_2 that communicates with the BrickPi3 with address 2.
+
+Each BrickPi3 has a unique ID that is static (cant/wont ever be changed). To determine the ID for each BrickPi3, connect one at a time to the RPi, and run the Python example program Read_Info.py 4 (ID is listed as Serial Number).
+
+Check out this BrickPi3 stack Python example 30.
+
+In the examples I used the ID 192A0F96514D4D5438202020FF080C23, but that is specific to one of my BrickPi3s. You will need to replace it with the ID of one of your BrickPi3s.
+
+I have done some testing, and it seems to work well, but please contact me with any issues you find.
+
