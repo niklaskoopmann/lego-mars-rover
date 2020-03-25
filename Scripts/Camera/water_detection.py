@@ -13,6 +13,7 @@ import time
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 # from skimage import morphology
+import config
 
 # create instance of PiCamera from the drivers
 camera = PiCamera()
@@ -37,7 +38,6 @@ def camera_capture(callback_func):
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
         image = frame.array
-        # blurred = cv2.GaussianBlur(image, (5, 5), 0)
         hsvImage = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
         # blue lego brick: RGBA(0, 87, 166, 1)

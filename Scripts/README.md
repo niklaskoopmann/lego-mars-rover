@@ -3,10 +3,10 @@
 ## List of dependencies per module
 
 ### Actuator Control
-- BrickPi3 Python library
+- BrickPi3 Python library (included in Raspbian for Robots)
 
 ### Camera Feed
-- PixyCam2 Python library (partially included at the moment)
+- PiCamera Python library for use with original Cam V2
 
 ### Text To Speech
 - pyttsx3
