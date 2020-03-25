@@ -4,6 +4,7 @@ VIDEO_CAPTURE_HEIGHT = 720 # pixels
 VIDEO_CAPTURE_FRAMERATE = 60 # Hz/fps
 
 # color for object recognition
+# blue lego brick: RGBA(0, 87, 166, 1)
 TARGET_RED = 0
 TARGET_GREEN = 87
 TARGET_BLUE = 166
@@ -17,9 +18,11 @@ TTS_WORDS_PER_MINUTE = 150
 BP_DRIVE_SN = "07976FB6515035524E202020FF101B0C" # see BrickPi-Info file
 BP_STEER_SN = "45C31FAF514D3937304B2020FF15122B" # see BrickPi-Info file
 
-# words to listen for
+# speech recognition
 WORDS_TO_RECOGNIZE = ["start", "stop", "move", "left", "right"]
+PAUSE_THRESHOLD = 0.5 # in seconds
 
 # rover movement
 DURATION_FORWARD = 3 # in seconds
-POWER_LIMIT = 25
+MOTOR_POWER_LIMIT = 50 # per cent
+MOTOR_TARGET_POWER = 25 # per cent

@@ -13,7 +13,7 @@ from Actuator.actuator_control import stop_driving
 # callback is the function to say "Water found"
 # -> passed as argument to camera_capture
 camera_thread = threading.Thread(
-    target=pycamtest.camera_capture,
+    target=water_detection.camera_capture,
     args=(speak.water_found,))
 
 # setup thread for voice input

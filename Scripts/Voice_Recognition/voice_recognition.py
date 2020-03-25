@@ -2,6 +2,7 @@ import speech_recognition as sr
 import cv2 # only for key press detection
 from Voice_Output.speak import speak
 from Actuator.actuator_control import drive_forward, stop_driving, turn_left, turn_right
+import config
 
 # speech_recognition documentation:
 # https://github.com/Uberi/speech_recognition/blob/master/reference/library-reference.rst
@@ -15,15 +16,17 @@ m = sr.Microphone()
 # ["./Snowboy/Hey Rover.pmdl"])
 
 # lower the pause threshold on the recognizer for quicker recognition
-r.pause_threshold = 0.5
+r.pause_threshold = config.PAUSE_THRESHOLD
 
 # create array of tuples with the words to recognize and their weight
-keywords = [("start", 1), ("move", 1), ("left", 1), ("right", 1), ("stop", 1)]
+keywords = []
+for word in config.WORDS_TO_RECOGNIZE:
+    keywords.append((word, 1.0))
 
 # functions to call when a command was recognized
 def drive_forward_recognized():
     print("[VOICE] Drive command recognized.")
-    drive_forward(25)
+    drive_forward(config.MOTOR_TARGET_POWER)
     speak("Yes, Master! I shall drive...")
 
 def stop_driving_recognized():

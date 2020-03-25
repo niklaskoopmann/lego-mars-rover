@@ -19,11 +19,11 @@ import config
 camera = PiCamera()
 
 # setup constants for this script
-camera.resolution = (640, 480)
-camera.framerate = 60
+camera.resolution = (config.VIDEO_CAPTURE_WIDTH, config.VIDEO_CAPTURE_HEIGHT)
+camera.framerate = config.VIDEO_CAPTURE_FRAMERATE
 
 # ?
-rawCapture = PiRGBArray(camera, size=(640, 480))
+rawCapture = PiRGBArray(camera, size=(config.VIDEO_CAPTURE_WIDTH, config.VIDEO_CAPTURE_HEIGHT))
 
 # wait for camera to fully start up
 time.sleep(0.1)
@@ -40,22 +40,16 @@ def camera_capture(callback_func):
         image = frame.array
         hsvImage = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
-        # blue lego brick: RGBA(0, 87, 166, 1)
-        bgr = [166, 87, 0]
-        hueThreshold = 20
+        bgr = [config.TARGET_BLUE, config.TARGET_GREEN, config.TARGET_RED]
+        hueThreshold = config.RECOGNITION_TOLERANCE
         hsvColor = cv2.cvtColor( np.uint8([[bgr]] ), cv2.COLOR_BGR2HSV)[0][0]
 
+        # define min/max HSV colours for detection
         minHSV = np.array([hsvColor[0] - hueThreshold, 80, 80])
         maxHSV = np.array([hsvColor[0] + hueThreshold, 255, 255])
 
+        # filter out everything that is not within tolerance
         mask = cv2.inRange(hsvImage, minHSV, maxHSV)
-        #cleanmask = cv2.fastNlMeansDenoisingMulti(mask, 10, 7)
-        #cleanmask[cleanmask==255] = 1
-        #cleanmask = np.array(cleanmask, bool)
-        #cleanmask = morphology.remove_small_objects(cleanmask)
-        #cleanmask = cleanmask.astype(int)
-        #cleanmask[cleanmask==1] = 255
-
 
         # dilate and erode (too much for the current Raspberry Pi)
         #erodeElement = cv2.getStructuringElement(cv2.MORPH_RECT,(11,11))
@@ -67,9 +61,11 @@ def camera_capture(callback_func):
 
         # result = cv2.bitwise_and(image, image, mask=mask)
 
+        # find contours in the frame to estimate number of water objects
         (cnts, _) = cv2.findContours(mask.copy(), cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
         #mask = cv2.drawContours(mask, cnts, -1, (240, 0, 159), 3)
 
+        # if at least one contour was found, water is in the frame
         if len(cnts) > 0 and callback_func and not water_in_sight:
             water_in_sight = True
             callback_func()

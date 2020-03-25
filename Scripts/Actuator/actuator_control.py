@@ -1,11 +1,12 @@
 import brickpi3
 import time
+import config
 
 print ("[DRIVE] Setting up actuator controls...")
 
 # set volatile addresses for attached BrickPis using their serial numbers
-brickpi3.set_address(2, "07976FB6515035524E202020FF101B0C")
-brickpi3.set_address(3, "45C31FAF514D3937304B2020FF15122B")
+brickpi3.set_address(2, config.BP_DRIVE_SN)
+brickpi3.set_address(3, config.BP_STEER_SN)
 
 # instantiate both BrickPis
 BP_drive = brickpi3.BrickPi3(2)
@@ -14,6 +15,16 @@ BP_steer = brickpi3.BrickPi3(3)
 # reset all sensors/motors for the BrickPis
 BP_drive.reset_all()
 BP_steer.reset_all()
+
+# set power limit (param 2 in per cent) and speed limit (param 3 in dps) for motors
+BP_drive.set_motor_limits(BP_drive.PORT_A, 50, 200)
+BP_drive.set_motor_limits(BP_drive.PORT_B, 50, 200)
+BP_drive.set_motor_limits(BP_drive.PORT_C, 50, 200)
+BP_drive.set_motor_limits(BP_drive.PORT_D, 50, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_A, 50, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_B, 50, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_C, 50, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_D, 50, 200)
 
 print("[DRIVE] Both BrickPis connected and running!")
 
@@ -49,10 +60,10 @@ def stop_driving():
 
 def turn_left():
     print("[DRIVE] Yes, Master! Turning left...")
-    BP_steer.set_motor_power(BP_steer.PORT_A, 25)
-    BP_steer.set_motor_power(BP_steer.PORT_B, -25)
-    BP_steer.set_motor_power(BP_steer.PORT_C, -25)
-    BP_steer.set_motor_power(BP_steer.PORT_D, 25)
+    BP_steer.set_motor_power(BP_steer.PORT_A, config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_B, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_C, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_D, config.MOTOR_TARGET_POWER)
     time.sleep(0.5)
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
@@ -61,10 +72,10 @@ def turn_left():
 
 def turn_right():
     print("[DRIVE] Yes, Master! Turning right...")
-    BP_steer.set_motor_power(BP_steer.PORT_A, -25)
-    BP_steer.set_motor_power(BP_steer.PORT_B, 25)
-    BP_steer.set_motor_power(BP_steer.PORT_C, 25)
-    BP_steer.set_motor_power(BP_steer.PORT_D, -25)
+    BP_steer.set_motor_power(BP_steer.PORT_A, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_B, config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_C, config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_D, -config.MOTOR_TARGET_POWER)
     time.sleep(0.5)
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
