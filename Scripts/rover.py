@@ -7,6 +7,7 @@ import config
 from Camera import pycamtest
 from Voice_Output import speak
 from Voice_Recognition import voice_recognition
+from Actuator.actuator_control import stop_driving
 
 # setup thread for camera capture
 # callback is the function to say "Water found"
@@ -27,3 +28,6 @@ except KeyboardInterrupt:
 
 # after the threads are stopped, stop the tts engine
 speak.stop_tts_engine()
+
+# and stop all wheels
+stop_driving()

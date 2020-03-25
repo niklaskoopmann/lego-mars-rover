@@ -61,6 +61,15 @@ def turn_left():
 
 def turn_right():
     print("[DRIVE] Yes, Master! Turning right...")
+    BP_steer.set_motor_power(BP_steer.PORT_A, -25)
+    BP_steer.set_motor_power(BP_steer.PORT_B, 25)
+    BP_steer.set_motor_power(BP_steer.PORT_C, 25)
+    BP_steer.set_motor_power(BP_steer.PORT_D, -25)
+    time.sleep(0.5)
+    BP_steer.set_motor_power(BP_steer.PORT_A, 0)
+    BP_steer.set_motor_power(BP_steer.PORT_B, 0)
+    BP_steer.set_motor_power(BP_steer.PORT_C, 0)
+    BP_steer.set_motor_power(BP_steer.PORT_D, 0)
     
 def test_drive():
     try:

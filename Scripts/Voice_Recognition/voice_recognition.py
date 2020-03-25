@@ -1,9 +1,7 @@
 import speech_recognition as sr
+import cv2 # only for key press detection
 from Voice_Output.speak import speak
-from Actuator.actuator_control import drive_forward,
-                                      stop_driving,
-                                      turn_left,
-                                      turn_right
+from Actuator.actuator_control import drive_forward, stop_driving, turn_left, turn_right
 
 # speech_recognition documentation:
 # https://github.com/Uberi/speech_recognition/blob/master/reference/library-reference.rst
@@ -53,12 +51,19 @@ def recognize():
         print("[VOICE] Say some things!")
 
         while True:
+            
+            # listen for ESC or Q key and break loop if pressed
+            key = cv2.waitKey(1)
+            if key == 27 or key == ord('q') or key == ord('Q'):
+                break
+            
             with m as source:
                 # add Snowboy config to listen function!
                 audio = r.listen(source, phrase_time_limit=1)
             try:
                 # recognize speech using Sphinx to interpret locally
-                value = r.recognize_sphinx(audio, keyword_entries=keywords)
+                # using Google's engine for now because of the much higher accuracy
+                value = r.recognize_google(audio)#, keyword_entries=keywords)
 
                 # output recognized text -> subset of the keywords
                 print("[VOICE] [DEBUG] You said:", value)
