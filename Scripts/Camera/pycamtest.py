@@ -1,6 +1,5 @@
-# picamtest.py
 # using picamera
-# https://maker.pro/raspberry-pi/tutorial/how-to-create-object-detection-with-opencv
+# basic tutorial: https://maker.pro/raspberry-pi/tutorial/how-to-create-object-detection-with-opencv
 
 #
 # TODO: Maybe start a timer once water has been found.

@@ -1,16 +1,28 @@
 import speech_recognition as sr
 from Voice_Output.speak import speak
-from Actuator.actuator_control import drive_forward, stop_driving, turn_left, turn_right
+from Actuator.actuator_control import drive_forward,
+                                      stop_driving,
+                                      turn_left,
+                                      turn_right
 
 # speech_recognition documentation:
 # https://github.com/Uberi/speech_recognition/blob/master/reference/library-reference.rst
 
+# setup a recognizer and a microphone
 r = sr.Recognizer()
 m = sr.Microphone()
-#snowboy_config = ("./Snowboy/rpi-arm-raspbian-8.0-1.1.1", ["./Snowboy/Hey Rover.pmdl"])
+
+# import snowboy configuration to wait for a hotword
+#snowboy_config = ("./Snowboy/rpi-arm-raspbian-8.0-1.1.1",
+# ["./Snowboy/Hey Rover.pmdl"])
+
+# lower the pause threshold on the recognizer for quicker recognition
 r.pause_threshold = 0.5
+
+# create array of tuples with the words to recognize and their weight
 keywords = [("start", 1), ("move", 1), ("left", 1), ("right", 1), ("stop", 1)]
 
+# functions to call when a command was recognized
 def drive_forward_recognized():
     print("[VOICE] Drive command recognized.")
     drive_forward(25)
@@ -18,7 +30,7 @@ def drive_forward_recognized():
 
 def stop_driving_recognized():
     print("[VOICE] Stop command recognized.")
-    #stop_driving()
+    stop_driving()
     speak("Yes, Master! I will stop...")
 
 def turn_left_recognized():
@@ -28,22 +40,31 @@ def turn_left_recognized():
 
 def turn_right_recognized():
     print("[VOICE] Right turn command recognized.")
-    #turn_right()
+    turn_right()
     speak("Yes, Master! I am turning right...")
 
 
 def recognize():
     try:
+        # set a threshold to triggering noise
         with m as source: r.adjust_for_ambient_noise(source)
-        print("[VOICE] Set minimum energy threshold to {}".format(r.energy_threshold))
+
+        print("[VOICE] Set minimum energy threshold to", r.energy_threshold)
         print("[VOICE] Say some things!")
+
         while True:
-            with m as source: audio = r.listen(source, phrase_time_limit=1) # add Snowboy config here!
+            with m as source:
+                # add Snowboy config to listen function!
+                audio = r.listen(source, phrase_time_limit=1)
             try:
                 # recognize speech using Sphinx to interpret locally
-                value = r.recognize_sphinx(audio)#, keyword_entries=keywords)
+                value = r.recognize_sphinx(audio, keyword_entries=keywords)
+
+                # output recognized text -> subset of the keywords
                 print("[VOICE] [DEBUG] You said:", value)
-    
+
+                # distinguish commands ("stop" used first to make rover stop
+                # when in doubt)
                 if "stop" in value:
                     stop_driving_recognized()
                 elif "start" in value:
@@ -54,15 +75,21 @@ def recognize():
                     elif "right" in value:
                         turn_right_recognized()
                     else:
-                        raise sr.UnknownValueError("[VOICE] [ERROR] Direction not recognized.")
+                        raise sr.UnknownValueError("[VOICE] [ERROR] " +
+                        "Direction not recognized.")
                 else:
-                    raise sr.UnknownValueError("[VOICE] [ERROR] Input not recognized.")
-    
+                    raise sr.UnknownValueError("[VOICE] [ERROR] " +
+                    "Input not recognized.")
+
             except sr.UnknownValueError:
                 print("[VOICE] [ERROR] Unknown Value!")
+
             except sr.RequestError as e:
-                print("[VOICE] [ERROR] Speech Recognition Engine - Request not fulfilled; {0}".format(e))
+                print("[VOICE] [ERROR] Speech Recognition Engine - " +
+                "Request not fulfilled; {0}".format(e))
+
             except KeyboardInterrupt:
                 break
+
     except KeyboardInterrupt:
         pass
