@@ -2,20 +2,30 @@
 \label{chp:implementierung}
 
 In diesem Kapitel wird die gesamte Systemumgebung um das Steuerelement in Form eines Raspberry Pi beschrieben und erläutert.
+Die gesamte Implementierung der Steuerungsskripts erfolgt in Python und wird sinnvoll in Module unterteilt.
+Der Quelltext zum gesamten Projekt wird auf GitHub veröffentlicht.
 
+Insgesamt werden vier Module implementiert, die alle diskrete Funktionalitäten des Modells abdecken: Die Funktionen zur Motoransteuerung sind im Modul \texttt{Actuator} implementiert. 
+Für die Bilderkennung der Wasserobjekte auf einem Kamera-Feed der verwendeten Kamera (Details siehe Abschnitt \ref{sec:inst_konf_kamera}) ist das Modul \texttt{Camera} entwickelt worden.
+Die programmierten Skripte für Sprachein- und -ausgabe befinden sich respektive in den Modulen \texttt{Voice\_Recognition} und \texttt{Voice\_Output}.
+Koordiniert wird die auf diesen vier Modulen basierende Roversteuerung durch das Skript \texttt{rover.py}.
+In der Konfigurationsdatei \texttt{config.py} werden Variablen zur globalen Nutzung zentral deklariert und mit passenden Werten initialisiert.
 
 \section{Installation und Konfiguration Raspberry Pi}
 \label{sec:inst_konf_raspi}
 
 Die Steuerung des Mars-Rover-Modells erfolgt zentral über einen Raspberry Pi 3 Model B Plus (Revision 1.3).
 Auf diesem ist die Debian-basierte Distribution Raspbian for Robots der US-amerikanischen Firma Dexter Industries installiert worden.
-Dieses Betriebssystem enthält standardmäßig viele zusätzliche Anwendungen und Treiber vorinstalliert für den Einsatz des Raspberry Pi zur Steuerung von Robotern.
+Dieses Betriebssystem enthält standardmäßig viele vorinstallierte Anwendungen und Treiber für den Einsatz des Raspberry Pi zur Steuerung von Robotern.
 Insbesondere sind alle benötigten Bibliotheken zur Nutzung der zusätzlichen Platine BrickPi vorinstalliert und -konfiguriert.
 Der BrickPi ist ebenfalls ein Produkt von Dexter Industries und stellt eine Schnittstelle zwischen den verschiedenen LEGO-Mindstorms-Sensoren und -Motoren zum Raspberry Pi bereit.
 Er fungiert dabei auch als Stromquelle für diese sowie für den Raspberry Pi selbst und muss dazu lediglich auf dessen Pins für \acf{gpio} aufgesteckt werden.
 Da jeder BrickPi nur über vier Ausgänge zum Betrieb von EV3-Motoren verfügt, ist der gleichzeitige Einsatz von drei BrickPis nötig, um die zehn Motoren des Modells anzutreiben.
 Dabei kann jedes der sechs Räder separat durch einen Motor angetrieben sowie die äußeren vier Räder einzeln gelenkt werden.
 Eine Lenkung der mittleren Räder ist zum aktuellen Zeitpunkt nicht notwendig, kann aber problemlos über die verbleibenden beiden Ports der BrickPis ergänzt werden, beispielsweise um seitliche Fahrten zu ermöglichen.
+
+Um die Stromversorgung sicherzustellen, werden drei Powerbanks mit einer Gesamtkapazität von $60{,}3\ Ah$ und einem Gesamtgewicht von $1251\ g$ im Korpus des Rovers untergebracht.
+Der Raspberry Pi selbst wird durch die BrickPis über seine \acs{gpio}-Pins mit Energie versorgt \cite{cole2013} und benötigt entsprechend keine eigene Stromquelle.
 
 \section{Installation und Konfiguration Kamera}
 \label{sec:inst_konf_kamera}

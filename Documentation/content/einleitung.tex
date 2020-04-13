@@ -5,11 +5,15 @@
 \section{Motivation}
 \label{sec:motivation}
 
-Am 6. August 2012 landete der Rover \textit{Curiosity} als Teil der Mission \textit{Mars Science Laboratory} der US-amerikanischen Raumfahrtbehörde \acf{nasa} \cite{vasavada2014}.
-Seither hat er rund $21{,}93$ Kilometer zurückgelegt (Stand: Sol 2695) \cite{nasa2020}.
-% TODO Mehrwert für die Wissenschaft
+Am 6. August 2012 landete der Rover \textit{Curiosity} als Teil der Mission \textit{Mars Science Laboratory} der US-amerikanischen Raumfahrtbehörde \acf{nasa} im Gale-Krater auf dem Mars \cite{vasavada2014}.
+Seither hat er rund $21{,}93$ Kilometer zurückgelegt (Stand: Sol 2695) \cite{nasa2020} und die Landschaft entlang der Fahrtstrecke auf vielfältige Weise im Hinblick auf ihre frühere und aktuelle Eignung als Lebensraum für Organismen untersucht.
+Ein wichtiger Aspekt für den Nachweis der Existenz von Lebewesen ist das Vorhandensein flüssigen Wassers \cite{nasa2013}, dessen Rückstände der Rover mithilfe eines aktiven Neutronenspektrometers in Mineralien nachzuweisen versucht. \cite{vasavada2014}
 
-...
+Um weite Strecken im schroffen, unebenen Gelände der Marsoberfläche zurücklegen zu können, ist \textit{Curiosity} mit einem komplexen, sechsrädrigen Antriebs- und Federungssystem ausgestattet.
+Das Fahrwerk ist nach dem Rocker-Bogie-System der \acs{nasa} aufgebaut, um Hindernisse bis zu einer Höhe des Raddurchmessers von $0{,}5\ m$ überwinden zu können \cite{arvidson2013}.
+Eine solche Aufhängung ermöglicht dem Rover eine hohe Geländegängigkeit ohne den Einsatz von Achsen und erlaubt der Verbindung der hinteren Räder beider Seiten eine freie Drehung um den Verbindungspunkt zur Hauptstrebe, an der auch das jeweilige Vorderrad montiert ist \cite{bickler1998}. 
+
+% TODO Weitere Ausführungen
 
 Dieses Projekt (Mars Science Laboratory Curiosity Rover) wird im Rahmen des Research Lab for Deep Learning der Dualen Hochschule Baden-Württemberg (\acsu{dhbw}) zeitgleich mit der Erforschung schwarmbasierter Logistikabläufe durchgeführt.
 Langfristig soll das Ergebnis unter anderem zum Zwecke einer schwarmbasierten Erkundung marsähnlicher Landschaften weiterentwickelt werden können.
@@ -18,6 +22,9 @@ Langfristig soll das Ergebnis unter anderem zum Zwecke einer schwarmbasierten Er
 \label{sec:aufgabe}
 
 Ziel dieser Arbeit ist die \glqq Konzeptionierung und Implementierung eines Rover für die Erkundung einer (Mars-)Oberfläche\grqq\ \cite{mueller2019}.
+Die Suche nach Wasser wird dabei ebenfalls abgebildet und soll mithilfe der visuellen Erkennung blauer LEGO-Steine simuliert werden.
+Zusätzlich ist das Antriebskonzept des \textit{Curiosity}-Rovers originalgetreu nachzubilden: Es sollen sechs angetriebene Räder installiert sein, von denen vier gelenkt werden.
+Eine grundlegende mechanische Federung soll die Geländetauglichkeit steigern.
 
 % TODO REMOVE LITERATURE TESTS
 Literatur-Test:
@@ -26,7 +33,6 @@ Literatur-Test:
 \cite{molloy2016}
 \cite{donat2018}
 \cite{halfacree2019}
-\cite{cole2013}
 \cite{mcmanus2017}
 \cite{cox2014}
 \cite{pajankar2015}
