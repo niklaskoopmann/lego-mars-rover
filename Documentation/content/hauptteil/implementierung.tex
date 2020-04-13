@@ -13,12 +13,18 @@ Dieses Betriebssystem enthält standardmäßig viele zusätzliche Anwendungen un
 Insbesondere sind alle benötigten Bibliotheken zur Nutzung der zusätzlichen Platine BrickPi vorinstalliert und -konfiguriert.
 Der BrickPi ist ebenfalls ein Produkt von Dexter Industries und stellt eine Schnittstelle zwischen den verschiedenen LEGO-Mindstorms-Sensoren und -Motoren zum Raspberry Pi bereit.
 Er fungiert dabei auch als Stromquelle für diese sowie für den Raspberry Pi selbst und muss dazu lediglich auf dessen Pins für \acf{gpio} aufgesteckt werden.
+Da jeder BrickPi nur über vier Ausgänge zum Betrieb von EV3-Motoren verfügt, ist der gleichzeitige Einsatz von drei BrickPis nötig, um die zehn Motoren des Modells anzutreiben.
+Dabei kann jedes der sechs Räder separat durch einen Motor angetrieben sowie die äußeren vier Räder einzeln gelenkt werden.
+Eine Lenkung der mittleren Räder ist zum aktuellen Zeitpunkt nicht notwendig, kann aber problemlos über die verbleibenden beiden Ports der BrickPis ergänzt werden, beispielsweise um seitliche Fahrten zu ermöglichen.
 
 \section{Installation und Konfiguration Kamera}
 \label{sec:inst_konf_kamera}
 
 Für die Videoeingabe wird die originale Raspberry Pi Camera V2 genutzt.
-Die Aufnahmen erfolgen mit einer Auflösung von $1280 \times 720$ Pixeln und einer Frequenz von 60 Hz, sodass Wasserobjekte auch während der Fahrt gut erkannt werden können.
+Diese nutzt den CMOS-Sensor Sony IMX219 mit einer Auflösung von bis zu 8 Megapixeln \cite{pagnutti2017}.
+Die Aufnahmen erfolgen mit einer reduzierten Auflösung von $1280 \times 720$ Pixeln, um eine Frequenz von 60 Hz zu ermöglichen. 
+So ist sichergestellt, dass Wasserobjekte auch während der Fahrt gut erkannt werden können.
+
 
 \begin{wrapfigure}{l}{0.25\textwidth}
 	\centering
