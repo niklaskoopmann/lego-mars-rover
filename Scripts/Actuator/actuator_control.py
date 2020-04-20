@@ -9,10 +9,14 @@ brickpi3.set_address(2, config.BP_DRIVE_FRONT_REAR_SN)
 brickpi3.set_address(3, config.BP_STEER_SN)
 brickpi3.set_address(4, config.BP_DRIVE_MIDDLE_SN)
 
+print ("[DRIVE] BrickPi addresses set.")
+
 # instantiate both BrickPis
 BP_drive_fr = brickpi3.BrickPi3(2)
 BP_steer = brickpi3.BrickPi3(3)
-BP_drive_m = brickpi3.BrickPi(4)
+BP_drive_m = brickpi3.BrickPi3(4)
+
+print ("[DRIVE] BrickPis instantiated.")
 
 # reset all sensors/motors for the BrickPis
 BP_drive_fr.reset_all()
@@ -66,11 +70,11 @@ def stop_driving():
 
 def turn_left():
     print("[DRIVE] Yes, Master! Turning left...")
-    BP_steer.set_motor_power(BP_steer.PORT_A, config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_B, -config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_C, -config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_D, config.MOTOR_TARGET_POWER)
-    time.sleep(0.5)
+    BP_steer.set_motor_power(BP_steer.PORT_A, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_B, config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_C, config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_D, -config.MOTOR_TARGET_POWER)
+    time.sleep(0.3)
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
     BP_steer.set_motor_power(BP_steer.PORT_C, 0)
@@ -90,14 +94,17 @@ def turn_right():
 
 def test_drive():
     try:
-        drive_forward(25)
-        time.sleep(3)
         stop_driving()
-        turn_left()
-        drive_forward(50)
+        drive_forward(15)
+        time.sleep(1)
+        stop_driving()
+        #turn_left()
+        #drive_forward(30)
         time.sleep(1)
         stop_driving()
     except brickpi3.FirmwareVersionError as error:
         print(error)
     except:
         print("Communication with BrickPi3 unsuccessful")
+
+test_drive()
