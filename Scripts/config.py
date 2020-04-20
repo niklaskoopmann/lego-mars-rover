@@ -14,9 +14,10 @@ RECOGNITION_TOLERANCE = 10 # plus/minus on hue value
 TTS_VOLUME = 1.0 # on a scale from 0 to 1
 TTS_WORDS_PER_MINUTE = 150
 
-# BrickPi serial numbers
-BP_DRIVE_SN = "07976FB6515035524E202020FF101B0C" # see BrickPi-Info file
-BP_STEER_SN = "45C31FAF514D3937304B2020FF15122B" # see BrickPi-Info file
+# BrickPi serial numbers (see BrickPi info file)
+BP_DRIVE_FRONT_REAR_SN = "84880DFD514D3937304B2020FF0A172A"
+BP_DRIVE_MIDDLE_SN = "07976FB6515035524E202020FF101B0C"
+BP_STEER_SN = "45C31FAF514D3937304B2020FF15122B"
 
 # speech recognition
 WORDS_TO_RECOGNIZE = ["start", "stop", "move", "left", "right"]
@@ -24,5 +25,5 @@ PAUSE_THRESHOLD = 0.5 # in seconds
 
 # rover movement
 DURATION_FORWARD = 3 # in seconds
-MOTOR_POWER_LIMIT = 50 # per cent
-MOTOR_TARGET_POWER = 25 # per cent
+MOTOR_POWER_LIMIT = 20 # per cent
+MOTOR_TARGET_POWER = 10 # per cent

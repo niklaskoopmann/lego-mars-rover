@@ -5,35 +5,37 @@ import config
 print ("[DRIVE] Setting up actuator controls...")
 
 # set volatile addresses for attached BrickPis using their serial numbers
-brickpi3.set_address(2, config.BP_DRIVE_SN)
+brickpi3.set_address(2, config.BP_DRIVE_FRONT_REAR_SN)
 brickpi3.set_address(3, config.BP_STEER_SN)
+brickpi3.set_address(4, config.BP_DRIVE_MIDDLE_SN)
 
 # instantiate both BrickPis
-BP_drive = brickpi3.BrickPi3(2)
+BP_drive_fr = brickpi3.BrickPi3(2)
 BP_steer = brickpi3.BrickPi3(3)
+BP_drive_m = brickpi3.BrickPi(4)
 
 # reset all sensors/motors for the BrickPis
-BP_drive.reset_all()
+BP_drive_fr.reset_all()
 BP_steer.reset_all()
 
 # set power limit (param 2 in per cent) and speed limit (param 3 in dps) for motors
-BP_drive.set_motor_limits(BP_drive.PORT_A, 50, 200)
-BP_drive.set_motor_limits(BP_drive.PORT_B, 50, 200)
-BP_drive.set_motor_limits(BP_drive.PORT_C, 50, 200)
-BP_drive.set_motor_limits(BP_drive.PORT_D, 50, 200)
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_A, 50, 200)
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_B, 50, 200)
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_C, 50, 200)
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_D, 50, 200)
 BP_steer.set_motor_limits(BP_steer.PORT_A, 50, 200)
 BP_steer.set_motor_limits(BP_steer.PORT_B, 50, 200)
 BP_steer.set_motor_limits(BP_steer.PORT_C, 50, 200)
 BP_steer.set_motor_limits(BP_steer.PORT_D, 50, 200)
 
-print("[DRIVE] Both BrickPis connected and running!")
+print("[DRIVE] All BrickPis connected and running!")
 
 def reset_all_motors(BP):
     BP.reset_motor_encoder(BP.PORT_A)
     BP.reset_motor_encoder(BP.PORT_B)
     BP.reset_motor_encoder(BP.PORT_C)
     BP.reset_motor_encoder(BP.PORT_D)
-    
+
 def turn_off_all_wheels(BP):
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_B, 0)
@@ -46,17 +48,21 @@ def turn_off_all_wheels(BP):
 
 def drive_forward(motor_pwr):
     print("[DRIVE] Yes, Master! Driving...")
-    BP_drive.set_motor_power(BP_drive.PORT_A, -motor_pwr)
-    BP_drive.set_motor_power(BP_drive.PORT_B, -motor_pwr)
-    BP_drive.set_motor_power(BP_drive.PORT_C, motor_pwr)
-    BP_drive.set_motor_power(BP_drive.PORT_D, motor_pwr)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_A, -motor_pwr)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_B, -motor_pwr)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_C, motor_pwr)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_D, motor_pwr)
+    BP_drive_m.set_motor_power(BP_drive_m.PORT_A, motor_pwr)
+    BP_drive_m.set_motor_power(BP_drive_m.PORT_D, motor_pwr)
 
 def stop_driving():
     print("[DRIVE] Yes, Master! Stopping...")
-    BP_drive.set_motor_power(BP_drive.PORT_A, 0)
-    BP_drive.set_motor_power(BP_drive.PORT_B, 0)
-    BP_drive.set_motor_power(BP_drive.PORT_C, 0)
-    BP_drive.set_motor_power(BP_drive.PORT_D, 0)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_A, 0)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_B, 0)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_C, 0)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_D, 0)
+    BP_drive_m.set_motor_power(BP_drive_m.PORT_A, 0)
+    BP_drive_m.set_motor_power(BP_drive_m.PORT_D, 0)
 
 def turn_left():
     print("[DRIVE] Yes, Master! Turning left...")
@@ -81,7 +87,7 @@ def turn_right():
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
     BP_steer.set_motor_power(BP_steer.PORT_C, 0)
     BP_steer.set_motor_power(BP_steer.PORT_D, 0)
-    
+
 def test_drive():
     try:
         drive_forward(25)
@@ -95,4 +101,3 @@ def test_drive():
         print(error)
     except:
         print("Communication with BrickPi3 unsuccessful")
-
