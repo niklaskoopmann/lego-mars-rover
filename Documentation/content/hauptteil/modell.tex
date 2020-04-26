@@ -1,5 +1,5 @@
 \chapter{Modell}
-\label{chp:Modell}
+\label{chp:modell}
 
 Im ersten Schritt soll die digitale Modellierung des zu erschaffenden Mars Rovers erfolgen.
 Dazu wird gemäß der Spezifikation die Anwendung BrickLink-Studio (in der Version 2.0.10) genutzt.
@@ -15,28 +15,15 @@ Zusätzlich ist zum Vergleich in jedem Abschnitt eine Fotografie des realen Mode
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{../Images/Mars_Rover_V5_front.png}
+	\includegraphics[width=0.8\textwidth]{../Images/20200425_Mars_Rover_V5.png}
 	\vspace{0.5em}
 	\parbox[c]{0.8\linewidth}{\footnotesize
 		\centering
 		\vspace{1em}
-		Quelle: eigene Darstellung
+		Quelle: eigene Darstellung (Render-Export aus BrickLink Studio 2.0.10)
 	}
-	\caption{Zusammenfassung der Aufgaben eines Datenbankkontextes im Entity Framework}
-	\label{fig:dbcontext}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{../Images/Mars_Rover_V5_front_shadow.png}
-	\vspace{0.5em}
-	\parbox[c]{0.8\linewidth}{\footnotesize
-		\centering
-		\vspace{1em}
-		Quelle: eigene Darstellung
-	}
-	\caption{Zusammenfassung der Aufgaben eines Datenbankkontextes im Entity Framework}
-	\label{fig:dbcontext2}
+	\caption{Gerenderte Frontansicht des digitalen Rover-Modells}
+	\label{fig:roverfrontrender}
 \end{figure}
 
 In der Frontalansicht erkennt man gut die zwei breiten Vorderräder, die über jeweils einen Motor zum Antrieb und einen für die Lenkung des Rades verfügen.
@@ -47,18 +34,55 @@ Der Kopf ist um $22{,}5 \degree$ nach unten geneigt, sodass die Erkennung von Wa
 \section{Seitenansicht}
 \label{sec:seitenansicht}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Images/20200424_Mars_Rover_V5_side.png}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: eigene Darstellung (Render-Export aus BrickLink Studio 2.0.10)
+	}
+	\caption{Gerenderte Seitenansicht des digitalen Rover-Modells}
+	\label{fig:roversiderender}
+\end{figure}
+
 Der im vorherigen Abschnitt beschriebene Neigungswinkel des Kopfes wird in der Seitenansicht deutlich.
 Weiterhin sind die mittleren und die Hinterräder des Rovers zu sehen.
 Auf beiden Seiten sind diese starr miteinander verbunden und gemeinsam an einem einzigen Punkt mit einer vom Korpus ausgehenden, gefederten Strebe verbunden.
 Dies entspricht dem Aufbau des Rocker-Bogie-Systems, welches bei \textit{Curiosity} zum Einsatz gekommen ist.
 So ist sichergestellt, dass die mittleren Räder, die den Rover seitlich stabilisieren und antreiben, sowie die hinteren Räder, die ihn antreiben und gegebenenfalls lenken, in jedem Fall den Bodenkontakt beibehalten.
 Bezüglich der Verbindung zum Korpus wurde vom Rocker-Bogie-System insofern abgewichen, dass dieser nicht frei um einen Punkt rotieren kann, da eine kontrollierte Verlagerung seines Schwerpunkts entlang der Fahrtrichtungsachse aktuell nicht ermöglicht werden kann.
-Entsprechend besteht zum Beispiel durch Reibung an der Verbindungsstelle zur Aufhängung oder Windeinwirkung von vorn oder hinten die Gefahr, dass der Korpus kippt und nicht selbsttätig zurückgedreht werden kann.
+Entsprechend bestünde zum Beispiel durch Reibung an der Verbindungsstelle zur Aufhängung oder Windeinwirkung von vorn oder hinten die Gefahr, dass der Korpus kippt und nicht selbsttätig zurückgedreht werden kann.
+Es ist jedoch eine minimale Drehung um den zentralen Ankerpunkt zwischen Korpus und Fahrwerk möglich. 
+Durch zwei Federn, die an beiden Seiten auf gleicher Höhe zu diesem Punkt angebracht sind, wird der Korpus soweit nötig zurück in die Waagerechte gefedert.
 
 \section{Ansicht von oben}
 \label{sec:draufsicht}
 
-Bei Betrachtung des realen Modells von oben erkennt man das Solarpaneel auf dem Korpus des Rovers.
-Dieses soll die Energiegewinnung aus Sonnenlicht abbilden, wenngleich der Nennstrom des Moduls mit $250\ mA$ auf das Gesamtsystem keine großen Auswirkungen hätte.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Images/20200425_Mars_Rover_V5_top.png}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: eigene Darstellung (Render-Export aus BrickLink Studio 2.0.10)
+	}
+	\caption{Gerenderte Draufsicht des digitalen Rover-Modells}
+	\label{fig:rovertoprender}
+\end{figure}
 
-Darüber hinaus ist hier ein guter Überblick über die Platzierung der einzelnen Räder und Motoren in Relation zum Korpus erkennbar.
+In der Draufsicht ist ein aus einigen Liftarm-Streben bestehender, brückenartiger Überbau auf dem Rover zu erkennen.
+Dieser dient einerseits der gleichmäßigeren Lastverteilung und unterstützt andererseits die Ankerpunkte zwischen Korpus und Fahrwerk, da die Teile dauerhaft unter Spannung stehen und dadurch seitlich von außen Druck auf die Ankerpunkte ausüben.
+Im digitalen Modell ist die Strebe in der Mitte dieses Überbaus asymmetrisch zum Rest, da BrickLink Studio es nicht ermöglicht, die Teile unter Spannung anzubringen.
+Die Fotografie des realen Modells zeigt, wie die Anbringung konzipiert ist, und dass die diagonal angeordneten Streben an den Ankerpunkten (in Abbildung \ref{fig:rovertopfoto} oben und unten mittig) zur Mitte gezogen werden.
+
+Bei Betrachtung des realen Modells von oben erkennt man das Solarpaneel auf dem Korpus des Rovers.
+Dieses soll die Energiegewinnung aus Sonnenlicht von Curiosity abbilden, wenngleich der Nennstrom des Moduls mit $250\ mA$ auf das entwickelte Gesamtsystem keine großen Auswirkungen hätte.
+Aus einer Messung geht hervor, dass in das Gesamtsystem bereits im Leerlauf (alle BrickPis und Raspberry Pi eingeschaltet, keine Motoren aktiv) ein Strom von rund $1,3\ A$ fließt.
+% TODO bei Gelegenheit noch Strom unter Last bestimmen!
+
+Darüber hinaus ist in dieser Ansicht ein guter Überblick über die Platzierung der einzelnen Räder und Motoren in Relation zum Korpus gegeben.
+Um den Rover seitlich zu stabilisieren, sind die beiden mittleren Räder etwas weiter außen platziert.
+Alle Räder liegen jeweils mehrere Zentimeter vom Korpus entfernt am Boden auf.

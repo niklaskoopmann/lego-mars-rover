@@ -24,8 +24,40 @@ Da jeder BrickPi nur über vier Ausgänge zum Betrieb von EV3-Motoren verfügt, 
 Dabei kann jedes der sechs Räder separat durch einen Motor angetrieben sowie die äußeren vier Räder einzeln gelenkt werden.
 Eine Lenkung der mittleren Räder ist zum aktuellen Zeitpunkt nicht notwendig, kann aber problemlos über die verbleibenden beiden Ports der BrickPis ergänzt werden, beispielsweise um seitliche Fahrten zu ermöglichen.
 
+In Abbildung \ref{fig:brickpistack} ist die standardmäßige Belegung der drei BrickPis sowie deren Seriennummern dargestellt.
+Die Spalten \texttt{A} bis \texttt{D} entsprechen den
+% TODO Referenz zu Schema der einzelnen Ports
+
+
+
 Um die Stromversorgung sicherzustellen, werden drei Powerbanks mit einer Gesamtkapazität von $60{,}3\ Ah$ und einem Gesamtgewicht von $1251\ g$ im Korpus des Rovers untergebracht.
 Der Raspberry Pi selbst wird durch die BrickPis über seine \acs{gpio}-Pins mit Energie versorgt \cite{cole2013} und benötigt entsprechend keine eigene Stromquelle.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Images/brickpiconfig.pdf}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: eigene Darstellung
+	}
+	\caption{Belegung der Steuerungsausgänge zu den einzelnen Motoren an den drei BrickPis des Steuergerätes}
+	\label{fig:brickpistack}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../Images/BrickPi3-Port-Layout.png}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: \cite{dexter2017}
+	}
+	\caption{Belegung der Ein- und Ausgänge eines einzelnen BrickPi 3}
+	\label{fig:brickpi3ports}
+\end{figure}
 
 \section{Installation und Konfiguration Kamera}
 \label{sec:inst_konf_kamera}

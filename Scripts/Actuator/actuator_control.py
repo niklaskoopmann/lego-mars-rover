@@ -86,7 +86,7 @@ def turn_right():
     BP_steer.set_motor_power(BP_steer.PORT_B, config.MOTOR_TARGET_POWER)
     BP_steer.set_motor_power(BP_steer.PORT_C, config.MOTOR_TARGET_POWER)
     BP_steer.set_motor_power(BP_steer.PORT_D, -config.MOTOR_TARGET_POWER)
-    time.sleep(0.5)
+    time.sleep(0.3)
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
     BP_steer.set_motor_power(BP_steer.PORT_C, 0)
