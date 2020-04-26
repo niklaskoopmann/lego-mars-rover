@@ -17,18 +17,16 @@ In der Konfigurationsdatei \texttt{config.py} werden Variablen zur globalen Nutz
 Die Steuerung des Mars-Rover-Modells erfolgt zentral über einen Raspberry Pi 3 Model B Plus (Revision 1.3).
 Auf diesem ist die Debian-basierte Distribution Raspbian for Robots der US-amerikanischen Firma Dexter Industries installiert worden.
 Dieses Betriebssystem enthält standardmäßig viele vorinstallierte Anwendungen und Treiber für den Einsatz des Raspberry Pi zur Steuerung von Robotern.
-Insbesondere sind alle benötigten Bibliotheken zur Nutzung der zusätzlichen Platine BrickPi vorinstalliert und -konfiguriert.
+Insbesondere sind alle benötigten Bibliotheken zur Nutzung der zusätzlichen Platine BrickPi 3 vorinstalliert und -konfiguriert.
 Der BrickPi ist ebenfalls ein Produkt von Dexter Industries und stellt eine Schnittstelle zwischen den verschiedenen LEGO-Mindstorms-Sensoren und -Motoren zum Raspberry Pi bereit.
-Er fungiert dabei auch als Stromquelle für diese sowie für den Raspberry Pi selbst und muss dazu lediglich auf dessen Pins für \acf{gpio} aufgesteckt werden.
+Er fungiert dabei auch als Stromquelle für diese sowie für den Raspberry Pi selbst und muss dazu, ähnlich einer \acf{hat}, lediglich auf dessen Pins für \acf{gpio} aufgesteckt werden.
 Da jeder BrickPi nur über vier Ausgänge zum Betrieb von EV3-Motoren verfügt, ist der gleichzeitige Einsatz von drei BrickPis nötig, um die zehn Motoren des Modells anzutreiben.
 Dabei kann jedes der sechs Räder separat durch einen Motor angetrieben sowie die äußeren vier Räder einzeln gelenkt werden.
 Eine Lenkung der mittleren Räder ist zum aktuellen Zeitpunkt nicht notwendig, kann aber problemlos über die verbleibenden beiden Ports der BrickPis ergänzt werden, beispielsweise um seitliche Fahrten zu ermöglichen.
 
 In Abbildung \ref{fig:brickpistack} ist die standardmäßige Belegung der drei BrickPis sowie deren Seriennummern dargestellt.
-Die Spalten \texttt{A} bis \texttt{D} entsprechen den
-% TODO Referenz zu Schema der einzelnen Ports
-
-
+Die Spalten \texttt{A} bis \texttt{D} entsprechen den Motorsteuerausgängen \texttt{MA} bis \texttt{MD} des BrickPi 3.
+Eine Übersicht über dessen verschiedene Anschlüsse im Einzelnen ist der Vollständigkeit halber in Abbildung \ref{fig:brickpi3ports} abgebildet.
 
 Um die Stromversorgung sicherzustellen, werden drei Powerbanks mit einer Gesamtkapazität von $60{,}3\ Ah$ und einem Gesamtgewicht von $1251\ g$ im Korpus des Rovers untergebracht.
 Der Raspberry Pi selbst wird durch die BrickPis über seine \acs{gpio}-Pins mit Energie versorgt \cite{cole2013} und benötigt entsprechend keine eigene Stromquelle.
@@ -67,7 +65,6 @@ Diese nutzt den CMOS-Sensor Sony IMX219 mit einer Auflösung von bis zu 8 Megapi
 Die Aufnahmen erfolgen mit einer reduzierten Auflösung von $1280 \times 720$ Pixeln, um eine Frequenz von 60 Hz zu ermöglichen. 
 So ist sichergestellt, dass Wasserobjekte auch während der Fahrt gut erkannt werden können.
 
-
 \begin{wrapfigure}{l}{0.25\textwidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{../Images/3005.png}
@@ -84,7 +81,7 @@ So ist sichergestellt, dass Wasserobjekte auch während der Fahrt gut erkannt we
 
 Die Objekterkennung für Wasserobjekte erfolgt mithilfe der Programmbibliotheken picamera und OpenCV.
 Erstere stellt eine Schnittstelle zwischen der Raspberry-Pi-Kamera und Python zur Verfügung.
-Letztere ermöglicht die Echtzeitverarbeitung der Kamerabilder:
+Letztere ermöglicht die Echtzeitverarbeitung der Kamerabilder \cite{pajankar2015}:
 Die Objekte werden auf Basis ihrer blauen Farbe erkannt, da sich diese deutlich von der charakteristischen Farbe der Vorbildlandschaften des Mars unterscheidet.
 Letztere sei eine \enquote{predominantly yellowish brown color with only subtle variation} \cite{maki1999}.
 Die LEGO-Steine, welche als Wasserobjekte fungieren, haben die LEGO-Farb-ID $7$.
