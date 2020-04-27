@@ -23,13 +23,16 @@ camera.resolution = (config.VIDEO_CAPTURE_WIDTH, config.VIDEO_CAPTURE_HEIGHT)
 camera.framerate = config.VIDEO_CAPTURE_FRAMERATE
 
 # ?
-rawCapture = PiRGBArray(camera, size=(config.VIDEO_CAPTURE_WIDTH, config.VIDEO_CAPTURE_HEIGHT))
+rawCapture = PiRGBArray(camera, size=(
+    config.VIDEO_CAPTURE_WIDTH, config.VIDEO_CAPTURE_HEIGHT))
 
 # wait for camera to fully start up
 time.sleep(0.1)
 
 # function to continuously capture video from camera
 # calls "callback_func" once an object of the desired colour is in the frame
+
+
 def camera_capture(callback_func):
 
     # keep track of whether water is currently in sight
@@ -42,7 +45,7 @@ def camera_capture(callback_func):
 
         bgr = [config.TARGET_BLUE, config.TARGET_GREEN, config.TARGET_RED]
         hueThreshold = config.RECOGNITION_TOLERANCE
-        hsvColor = cv2.cvtColor( np.uint8([[bgr]] ), cv2.COLOR_BGR2HSV)[0][0]
+        hsvColor = cv2.cvtColor(np.uint8([[bgr]]), cv2.COLOR_BGR2HSV)[0][0]
 
         # define min/max HSV colours for detection
         minHSV = np.array([hsvColor[0] - hueThreshold, 80, 80])
@@ -62,7 +65,8 @@ def camera_capture(callback_func):
         # result = cv2.bitwise_and(image, image, mask=mask)
 
         # find contours in the frame to estimate number of water objects
-        (cnts, _) = cv2.findContours(mask.copy(), cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+        (cnts, _) = cv2.findContours(mask.copy(),
+                                     cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
         #mask = cv2.drawContours(mask, cnts, -1, (240, 0, 159), 3)
 
         # if at least one contour was found, water is in the frame
@@ -73,7 +77,8 @@ def camera_capture(callback_func):
             water_in_sight = False
 
         if water_in_sight:
-            cv2.putText(image, "WATER FOUND", (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2)
+            cv2.putText(image, "WATER FOUND", (40, 40),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
 
         cv2.imshow("image", image)
         #cv2.imshow("clean", cleanmask)
