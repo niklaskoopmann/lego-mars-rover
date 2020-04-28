@@ -1,5 +1,5 @@
 import speech_recognition as sr
-import cv2 # only for key press detection
+import cv2  # only for key press detection
 from Voice_Output.speak import speak
 from Actuator.actuator_control import drive_forward, stop_driving, turn_left, turn_right
 import config
@@ -12,7 +12,7 @@ r = sr.Recognizer()
 m = sr.Microphone()
 
 # import snowboy configuration to wait for a hotword
-#snowboy_config = ("./Snowboy/rpi-arm-raspbian-8.0-1.1.1",
+# snowboy_config = ("./Snowboy/rpi-arm-raspbian-8.0-1.1.1",
 # ["./Snowboy/Hey Rover.pmdl"])
 
 # lower the pause threshold on the recognizer for quicker recognition
@@ -24,20 +24,25 @@ for word in config.WORDS_TO_RECOGNIZE:
     keywords.append((word, 1.0))
 
 # functions to call when a command was recognized
+
+
 def drive_forward_recognized():
     print("[VOICE] Drive command recognized.")
     speak("Yes, Master!")
     drive_forward(config.MOTOR_TARGET_POWER)
+
 
 def stop_driving_recognized():
     print("[VOICE] Stop command recognized.")
     stop_driving()
     speak("Yes, Master!")
 
+
 def turn_left_recognized():
     print("[VOICE] Left turn command recognized.")
     turn_left()
     speak("Yes, Master! I am turning left...")
+
 
 def turn_right_recognized():
     print("[VOICE] Right turn command recognized.")
@@ -46,13 +51,13 @@ def turn_right_recognized():
 
 
 def recognize():
-        
+
     # set a threshold to triggering noise
     with m as source: r.adjust_for_ambient_noise(source)
 
     print("[VOICE] Set minimum energy threshold to", r.energy_threshold)
     print("[VOICE] Say some things!")
-
+    
     while True:
             
         # listen for ESC or Q key and break loop if pressed
