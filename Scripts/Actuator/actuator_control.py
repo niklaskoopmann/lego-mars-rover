@@ -77,8 +77,8 @@ def stop_driving():
 def turn_left():
     print("[DRIVE] Yes, Master! Turning left...")
     BP_steer.set_motor_power(BP_steer.PORT_A, -config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_B, config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_C, config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_B, 50)
+    BP_steer.set_motor_power(BP_steer.PORT_C, 50)
     BP_steer.set_motor_power(BP_steer.PORT_D, -config.MOTOR_TARGET_POWER)
     time.sleep(0.3)
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
@@ -90,10 +90,10 @@ def turn_left():
 def turn_right():
     print("[DRIVE] Yes, Master! Turning right...")
     BP_steer.set_motor_power(BP_steer.PORT_A, config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_B, -config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_C, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_B, -50)
+    BP_steer.set_motor_power(BP_steer.PORT_C, -50)
     BP_steer.set_motor_power(BP_steer.PORT_D, config.MOTOR_TARGET_POWER)
-    time.sleep(0.5)
+    time.sleep(0.3)
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
     BP_steer.set_motor_power(BP_steer.PORT_C, 0)
@@ -102,11 +102,16 @@ def turn_right():
 
 def test_drive():
     try:
-        stop_driving()
-        drive_forward(25)
         time.sleep(3)
         stop_driving()
+        drive_forward(25)
+        time.sleep(1)
+        stop_driving()
         turn_left()
+        drive_forward(25)
+        time.sleep(1)
+        stop_driving()
+        turn_right()
         drive_forward(25)
         time.sleep(1)
         stop_driving()
