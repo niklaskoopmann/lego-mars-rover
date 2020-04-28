@@ -45,7 +45,7 @@ def camera_capture(callback_func):
         hsvColor = cv2.cvtColor( np.uint8([[bgr]] ), cv2.COLOR_BGR2HSV)[0][0]
 
         # define min/max HSV colours for detection
-        minHSV = np.array([hsvColor[0] - hueThreshold, 80, 80])
+        minHSV = np.array([hsvColor[0] - hueThreshold, 100, 100])
         maxHSV = np.array([hsvColor[0] + hueThreshold, 255, 255])
 
         # filter out everything that is not within tolerance

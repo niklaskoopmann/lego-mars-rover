@@ -21,6 +21,7 @@ print ("[DRIVE] BrickPis instantiated.")
 # reset all sensors/motors for the BrickPis
 BP_drive_fr.reset_all()
 BP_steer.reset_all()
+BP_drive_m.reset_all()
 
 # set power limit (param 2 in per cent) and speed limit (param 3 in dps) for motors
 BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_A, 50, 200)
@@ -52,11 +53,11 @@ def turn_off_all_wheels(BP):
 
 def drive_forward(motor_pwr):
     print("[DRIVE] Yes, Master! Driving...")
-    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_A, -motor_pwr)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_A, -motor_pwr * 1.5)
     BP_drive_fr.set_motor_power(BP_drive_fr.PORT_B, -motor_pwr)
     BP_drive_fr.set_motor_power(BP_drive_fr.PORT_C, motor_pwr)
-    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_D, motor_pwr)
-    BP_drive_m.set_motor_power(BP_drive_m.PORT_A, motor_pwr)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_D, motor_pwr * 1.5)
+    BP_drive_m.set_motor_power(BP_drive_m.PORT_A, -motor_pwr)
     BP_drive_m.set_motor_power(BP_drive_m.PORT_D, motor_pwr)
 
 def stop_driving():
@@ -82,10 +83,10 @@ def turn_left():
 
 def turn_right():
     print("[DRIVE] Yes, Master! Turning right...")
-    BP_steer.set_motor_power(BP_steer.PORT_A, -config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_B, config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_C, config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_D, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_A, config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_B, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_C, -config.MOTOR_TARGET_POWER)
+    BP_steer.set_motor_power(BP_steer.PORT_D, config.MOTOR_TARGET_POWER)
     time.sleep(0.5)
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
@@ -95,11 +96,11 @@ def turn_right():
 def test_drive():
     try:
         stop_driving()
-        drive_forward(15)
-        time.sleep(1)
+        drive_forward(25)
+        time.sleep(3)
         stop_driving()
-        #turn_left()
-        #drive_forward(30)
+        turn_left()
+        drive_forward(25)
         time.sleep(1)
         stop_driving()
     except brickpi3.FirmwareVersionError as error:
@@ -107,4 +108,3 @@ def test_drive():
     except:
         print("Communication with BrickPi3 unsuccessful")
 
-test_drive()

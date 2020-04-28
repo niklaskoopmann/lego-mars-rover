@@ -18,3 +18,5 @@ def water_found():
 
 def stop_tts_engine():
     engine.stop()
+
+speak("Voice output initialized!")

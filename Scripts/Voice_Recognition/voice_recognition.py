@@ -26,13 +26,13 @@ for word in config.WORDS_TO_RECOGNIZE:
 # functions to call when a command was recognized
 def drive_forward_recognized():
     print("[VOICE] Drive command recognized.")
+    speak("Yes, Master!")
     drive_forward(config.MOTOR_TARGET_POWER)
-    speak("Yes, Master! I shall drive...")
 
 def stop_driving_recognized():
     print("[VOICE] Stop command recognized.")
     stop_driving()
-    speak("Yes, Master! I will stop...")
+    speak("Yes, Master!")
 
 def turn_left_recognized():
     print("[VOICE] Left turn command recognized.")
@@ -46,58 +46,57 @@ def turn_right_recognized():
 
 
 def recognize():
-    try:
-        # set a threshold to triggering noise
-        with m as source: r.adjust_for_ambient_noise(source)
+        
+    # set a threshold to triggering noise
+    with m as source: r.adjust_for_ambient_noise(source)
 
-        print("[VOICE] Set minimum energy threshold to", r.energy_threshold)
-        print("[VOICE] Say some things!")
+    print("[VOICE] Set minimum energy threshold to", r.energy_threshold)
+    print("[VOICE] Say some things!")
 
-        while True:
+    while True:
             
-            # listen for ESC or Q key and break loop if pressed
-            key = cv2.waitKey(1)
-            if key == 27 or key == ord('q') or key == ord('Q'):
-                break
-            
-            with m as source:
-                # add Snowboy config to listen function!
-                audio = r.listen(source, phrase_time_limit=1)
-            try:
-                # recognize speech using Sphinx to interpret locally
-                # using Google's engine for now because of the much higher accuracy
-                value = r.recognize_google(audio)#, keyword_entries=keywords)
+        # listen for ESC or Q key and break loop if pressed
+        key = cv2.waitKey(1)
+        if key == 27 or key == ord('q') or key == ord('Q'):
+            break
+        
+        with m as source:
+            # add Snowboy config to listen function!
+            audio = r.listen(source, phrase_time_limit=2)
+        try:
+            # recognize speech using Sphinx to interpret locally
+            # using Google's engine for now because of the much higher accuracy
+            value = r.recognize_google(audio).lower()#, keyword_entries=keywords)
 
-                # output recognized text -> subset of the keywords
-                print("[VOICE] [DEBUG] You said:", value)
+            # output recognized text -> subset of the keywords
+            print("[VOICE] [DEBUG] You said:", value)
 
-                # distinguish commands ("stop" used first to make rover stop
-                # when in doubt)
-                if "stop" in value:
-                    stop_driving_recognized()
-                elif "start" in value:
-                    drive_forward_recognized()
-                elif "move" in value:
-                    if "left" in value:
-                        turn_left_recognized()
-                    elif "right" in value:
-                        turn_right_recognized()
-                    else:
-                        raise sr.UnknownValueError("[VOICE] [ERROR] " +
-                        "Direction not recognized.")
+            # distinguish commands ("stop" used first to make rover stop
+            # when in doubt)
+            if "stop" in value:
+                stop_driving_recognized()
+            elif "start" in value:
+                drive_forward_recognized()
+            elif "move" in value:
+                if "left" in value:
+                    turn_left_recognized()
+                elif "right" in value:
+                    turn_right_recognized()
                 else:
                     raise sr.UnknownValueError("[VOICE] [ERROR] " +
-                    "Input not recognized.")
+                    "Direction not recognized.")
+            else:
+                raise sr.UnknownValueError("[VOICE] [ERROR] " +
+                "Input not recognized.")
 
-            except sr.UnknownValueError:
-                print("[VOICE] [ERROR] Unknown Value!")
+        except sr.UnknownValueError:
+            print("[VOICE] [ERROR] Unknown Value!")
 
-            except sr.RequestError as e:
-                print("[VOICE] [ERROR] Speech Recognition Engine - " +
-                "Request not fulfilled; {0}".format(e))
+        except sr.RequestError as e:
+            print("[VOICE] [ERROR] Speech Recognition Engine - " +
+            "Request not fulfilled; {0}".format(e))
 
-            except KeyboardInterrupt:
-                break
+        except KeyboardInterrupt:
+            break
 
-    except KeyboardInterrupt:
-        pass
+recognize()
