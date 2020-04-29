@@ -11,27 +11,30 @@ brickpi3.set_address(4, config.BP_DRIVE_MIDDLE_SN)
 
 print("[DRIVE] BrickPi addresses set.")
 
-# instantiate both BrickPis
+# instantiate all BrickPis
 BP_drive_fr = brickpi3.BrickPi3(2)
 BP_steer = brickpi3.BrickPi3(3)
 BP_drive_m = brickpi3.BrickPi3(4)
 
-print("[DRIVE] BrickPis instantiated.")
+print("[DRIVE] All BrickPis instantiated.")
 
 # reset all sensors/motors for the BrickPis
 BP_drive_fr.reset_all()
 BP_steer.reset_all()
 BP_drive_m.reset_all()
 
-# set power limit (param 2 in per cent) and speed limit (param 3 in dps) for motors
-BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_A, 50, 200)
-BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_B, 50, 200)
-BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_C, 50, 200)
-BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_D, 50, 200)
-BP_steer.set_motor_limits(BP_steer.PORT_A, 50, 200)
-BP_steer.set_motor_limits(BP_steer.PORT_B, 50, 200)
-BP_steer.set_motor_limits(BP_steer.PORT_C, 50, 200)
-BP_steer.set_motor_limits(BP_steer.PORT_D, 50, 200)
+# set power limit (param 2, in per cent) and speed limit (param 3, in dps) for
+# motors
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_A, config.MOTOR_POWER_LIMIT, 200)
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_B, config.MOTOR_POWER_LIMIT, 200)
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_C, config.MOTOR_POWER_LIMIT, 200)
+BP_drive_fr.set_motor_limits(BP_drive_fr.PORT_D, config.MOTOR_POWER_LIMIT, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_A, config.MOTOR_POWER_LIMIT, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_B, config.MOTOR_POWER_LIMIT, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_C, config.MOTOR_POWER_LIMIT, 200)
+BP_steer.set_motor_limits(BP_steer.PORT_D, config.MOTOR_POWER_LIMIT, 200)
+BP_drive_m.set_motor_limits(BP_drive_m.PORT_A, config.MOTOR_POWER_LIMIT, 200)
+BP_drive_m.set_motor_limits(BP_drive_m.PORT_D, config.MOTOR_POWER_LIMIT, 200)
 
 print("[DRIVE] All BrickPis connected and running!")
 
@@ -54,14 +57,16 @@ def turn_off_all_wheels(BP):
     BP.set_motor_dps(BP.PORT_D, 0)
 
 
-def drive_forward(motor_pwr):
+def drive_forward():
     print("[DRIVE] Yes, Master! Driving...")
-    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_A, -motor_pwr * 1.5)
-    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_B, -motor_pwr)
-    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_C, motor_pwr)
-    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_D, motor_pwr * 1.5)
-    BP_drive_m.set_motor_power(BP_drive_m.PORT_A, -motor_pwr)
-    BP_drive_m.set_motor_power(BP_drive_m.PORT_D, motor_pwr)
+    BP_drive_fr.set_motor_power(
+        BP_drive_fr.PORT_A, -config.MOTOR_TARGET_POWER * 1.5)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_B, -config.MOTOR_TARGET_POWER)
+    BP_drive_fr.set_motor_power(BP_drive_fr.PORT_C, config.MOTOR_TARGET_POWER)
+    BP_drive_fr.set_motor_power(
+        BP_drive_fr.PORT_D, config.MOTOR_TARGET_POWER * 1.5)
+    BP_drive_m.set_motor_power(BP_drive_m.PORT_A, -config.MOTOR_TARGET_POWER)
+    BP_drive_m.set_motor_power(BP_drive_m.PORT_D, config.MOTOR_TARGET_POWER)
 
 
 def stop_driving():
@@ -75,29 +80,71 @@ def stop_driving():
 
 
 def turn_left():
+
     print("[DRIVE] Yes, Master! Turning left...")
+
+    # save all four motor orientations
+    orientation_a = BP_steer.get_motor_encoder(BP_steer.PORT_A)
+    orientation_b = BP_steer.get_motor_encoder(BP_steer.PORT_B)
+    orientation_c = BP_steer.get_motor_encoder(BP_steer.PORT_C)
+    orientation_d = BP_steer.get_motor_encoder(BP_steer.PORT_D)
+
     BP_steer.set_motor_power(BP_steer.PORT_A, -config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_B, 50)
-    BP_steer.set_motor_power(BP_steer.PORT_C, 50)
     BP_steer.set_motor_power(BP_steer.PORT_D, -config.MOTOR_TARGET_POWER)
+
+    # front motors (B and C) need more power to turn bc of extra weight on them
+    # -> use maximum allowed power
+    BP_steer.set_motor_power(BP_steer.PORT_B, config.MOTOR_POWER_LIMIT)
+    BP_steer.set_motor_power(BP_steer.PORT_C, config.MOTOR_POWER_LIMIT)
+
+    # turning to 45° takes around 0.3 seconds
     time.sleep(0.3)
+
+    # turn off motors again
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
     BP_steer.set_motor_power(BP_steer.PORT_C, 0)
     BP_steer.set_motor_power(BP_steer.PORT_D, 0)
+
+    # return motors to original orientations
+    BP_steer.set_motor_position(BP_steer.PORT_A, orientation_a)
+    BP_steer.set_motor_position(BP_steer.PORT_B, orientation_b)
+    BP_steer.set_motor_position(BP_steer.PORT_C, orientation_c)
+    BP_steer.set_motor_position(BP_steer.PORT_D, orientation_d)
 
 
 def turn_right():
+
     print("[DRIVE] Yes, Master! Turning right...")
+
+    # save all four motor orientations
+    orientation_a = BP_steer.get_motor_encoder(BP_steer.PORT_A)
+    orientation_b = BP_steer.get_motor_encoder(BP_steer.PORT_B)
+    orientation_c = BP_steer.get_motor_encoder(BP_steer.PORT_C)
+    orientation_d = BP_steer.get_motor_encoder(BP_steer.PORT_D)
+
     BP_steer.set_motor_power(BP_steer.PORT_A, config.MOTOR_TARGET_POWER)
-    BP_steer.set_motor_power(BP_steer.PORT_B, -50)
-    BP_steer.set_motor_power(BP_steer.PORT_C, -50)
     BP_steer.set_motor_power(BP_steer.PORT_D, config.MOTOR_TARGET_POWER)
+
+    # front motors (B and C) need more power to turn bc of extra weight on them
+    # -> use maximum allowed power
+    BP_steer.set_motor_power(BP_steer.PORT_B, -config.MOTOR_POWER_LIMIT)
+    BP_steer.set_motor_power(BP_steer.PORT_C, -config.MOTOR_POWER_LIMIT)
+
+    # turning to 45° takes around 0.3 seconds
     time.sleep(0.3)
+
+    # turn off motors again
     BP_steer.set_motor_power(BP_steer.PORT_A, 0)
     BP_steer.set_motor_power(BP_steer.PORT_B, 0)
     BP_steer.set_motor_power(BP_steer.PORT_C, 0)
     BP_steer.set_motor_power(BP_steer.PORT_D, 0)
+
+    # return motors to original orientations
+    BP_steer.set_motor_position(BP_steer.PORT_A, orientation_a)
+    BP_steer.set_motor_position(BP_steer.PORT_B, orientation_b)
+    BP_steer.set_motor_position(BP_steer.PORT_C, orientation_c)
+    BP_steer.set_motor_position(BP_steer.PORT_D, orientation_d)
 
 
 def test_drive():
@@ -119,5 +166,6 @@ def test_drive():
         print(error)
     except:
         print("Communication with BrickPi3 unsuccessful")
+
 
 test_drive()

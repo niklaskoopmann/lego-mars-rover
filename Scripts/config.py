@@ -24,6 +24,7 @@ WORDS_TO_RECOGNIZE = ["start", "stop", "move", "left", "right"]
 PAUSE_THRESHOLD = 0.5 # in seconds
 
 # rover movement
+# idea: have weight of Rover in config and calculate req. motor power from it 
 DURATION_FORWARD = 3 # in seconds
-MOTOR_POWER_LIMIT = 40 # per cent
+MOTOR_POWER_LIMIT = 60 # per cent
 MOTOR_TARGET_POWER = 25 # per cent

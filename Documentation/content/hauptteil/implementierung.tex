@@ -11,6 +11,11 @@ Die programmierten Skripte für Sprachein- und -ausgabe befinden sich respektive
 Koordiniert wird die auf diesen vier Modulen basierende Roversteuerung durch das Skript \texttt{rover.py}.
 In der Konfigurationsdatei \texttt{config.py} werden Variablen zur globalen Nutzung zentral deklariert und mit passenden Werten initialisiert.
 
+Um die gleichzeitige Sprach- und Objekterkennung zu ermöglichen, erzeugt das Hauptskript zwei Threads, die eine zeitgleiche Verarbeitung der entsprechenden Funktionen ermöglichen.
+Die Funktion, welche im Thread für die Wassererkennung aufgerufen wird, nimmt als Argument eine Callback-Funktion entgegen.
+Hier wird die Funktion \texttt{water\_found} des Moduls \texttt{Voice\_Output} übergeben, sodass bei jeder Erkennung eines Wasser-Objektes der Text \enquote{Water found} ausgegeben wird.
+Die Spracherkennung ruft entsprechende Funktionen zur Motorsteuerung nach der Erkennung von Eingabebefehlen direkt auf und benötigt demnach keine Callback-Funktion.
+
 \section{Installation und Konfiguration Raspberry Pi}
 \label{sec:inst_konf_raspi}
 
@@ -27,6 +32,7 @@ Eine Lenkung der mittleren Räder ist zum aktuellen Zeitpunkt nicht notwendig, k
 In Abbildung \ref{fig:brickpistack} ist die standardmäßige Belegung der drei BrickPis sowie deren Seriennummern dargestellt.
 Die Spalten \texttt{A} bis \texttt{D} entsprechen den Motorsteuerausgängen \texttt{MA} bis \texttt{MD} des BrickPi 3.
 Eine Übersicht über dessen verschiedene Anschlüsse im Einzelnen ist der Vollständigkeit halber in Abbildung \ref{fig:brickpi3ports} abgebildet.
+Die Bezeichnungen der Motoren anhand ihrer Richtung (vorn, hinten, links, rechts) sind dabei unter der Voraussetzung, dass der Rover in Fahrtrichtung betrachtet wird, zutreffend.
 
 Um die Stromversorgung sicherzustellen, werden drei Powerbanks mit einer Gesamtkapazität von $60{,}3\ Ah$ und einem Gesamtgewicht von $1251\ g$ im Korpus des Rovers untergebracht.
 Der Raspberry Pi selbst wird durch die BrickPis über seine \acs{gpio}-Pins mit Energie versorgt \cite{cole2013} und benötigt entsprechend keine eigene Stromquelle.
@@ -55,6 +61,26 @@ Der Raspberry Pi selbst wird durch die BrickPis über seine \acs{gpio}-Pins mit 
 	}
 	\caption{Belegung der Ein- und Ausgänge eines einzelnen BrickPi 3}
 	\label{fig:brickpi3ports}
+\end{figure}
+
+Für die Sprachein- und -ausgabe wird eine USB-Soundkarte angeschlossen, die jeweils eine $3{,}5$-mm-Klinkenbuchse für Lautsprecher und Mikrofon bereitstellt.
+Die Konfiguration geschieht über die \acf{alsa} Utilities -- die unter Raspbian vorinstallierten Soundtreiber für den Raspberry Pi.
+Neben dem Onboard-Sound über den Klinkenausgang des Raspberry Pi unterstützen diese auch die digitale Ausgabe über \acf{hdmi} sowie die genutzte Soundkarte über USB. \cite{molloy2016}
+
+Die Ausgabe geschieht dabei mithilfe eines Bluetooth-Lautsprechers (vertrieben durch die Inspirion GmbH), welcher über einen eigenen Akku verfügt und mittels Klinke an die oben genannte Soundkarte angeschlossen wird.
+Der genutzte Lautsprecher ist in Abbildung \ref{fig:lautsprecher} dargestellt.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../Images/lautsprecher.png}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: eigene Aufnahme
+	}
+	\caption{Für die Sprachausgabe genutzter Lautsprecher (Inspirion GmbH)}
+	\label{fig:lautsprecher}
 \end{figure}
 
 \section{Installation und Konfiguration Kamera}
