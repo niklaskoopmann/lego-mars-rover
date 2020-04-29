@@ -10,8 +10,6 @@ Zusätzlich ist zum Vergleich in jedem Abschnitt eine Fotografie des realen Mode
 \section{Vorderansicht}
 \label{sec:voderansicht}
 
-% TODO Vorderansicht foto
-
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Images/20200429_Mars_Rover_V5_front.png}
@@ -23,6 +21,19 @@ Zusätzlich ist zum Vergleich in jedem Abschnitt eine Fotografie des realen Mode
 	}
 	\caption{Gerenderte Frontansicht des digitalen Rover-Modells}
 	\label{fig:roverfrontrender}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Images/20200429_front_01.jpg}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: eigene Aufnahme
+	}
+	\caption{Fotografie des realen Rover-Modells aus Frontansicht}
+	\label{fig:roverfrontfoto}
 \end{figure}
 
 In der Frontalansicht erkennt man gut die zwei breiten Vorderräder, die über jeweils einen Motor zum Antrieb und einen für die Lenkung des Rades verfügen.
@@ -45,6 +56,19 @@ Durch die beiden Öffnungen an der Unterkante des Korpus sind die Verbindungskab
 	}
 	\caption{Gerenderte Seitenansicht des digitalen Rover-Modells}
 	\label{fig:roversiderender}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Images/20200429_side_01.jpg}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: eigene Aufnahme
+	}
+	\caption{Fotografie des realen Rover-Modells aus Seitenansicht}
+	\label{fig:roversidefoto}
 \end{figure}
 
 Der im vorherigen Abschnitt beschriebene Neigungswinkel des Kopfes wird in der Seitenansicht deutlich.
@@ -75,19 +99,35 @@ Die Öffnungen links der Ankerpunkte dienen hier auch der Kabelführung, in dies
 	\label{fig:rovertoprender}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Images/20200429_top_01.jpg}
+	\vspace{0.5em}
+	\parbox[c]{0.8\linewidth}{\footnotesize
+		\centering
+		\vspace{1em}
+		Quelle: eigene Aufnahme
+	}
+	\caption{Fotografie des realen Rover-Modells aus Draufsicht}
+	\label{fig:rovertopfoto}
+\end{figure}
+
 In der Draufsicht ist ein aus einigen Liftarm-Streben bestehender, brückenartiger Überbau auf dem Rover zu erkennen.
 Dieser dient einerseits der gleichmäßigeren Lastverteilung und unterstützt andererseits die Ankerpunkte zwischen Korpus und Fahrwerk, da die Teile dauerhaft unter Spannung stehen und dadurch seitlich von außen Druck auf die Ankerpunkte ausüben.
 Im digitalen Modell ist die Strebe in der Mitte dieses Überbaus asymmetrisch zum Rest, da BrickLink Studio es nicht ermöglicht, die Teile unter Spannung anzubringen.
 Die Fotografie des realen Modells zeigt, wie die Anbringung konzipiert ist, und dass die diagonal angeordneten Streben an den Ankerpunkten (in Abbildung \ref{fig:rovertopfoto} oben und unten mittig) zur Mitte gezogen werden.
 
 Bei Betrachtung des realen Modells von oben erkennt man das Solarpaneel auf dem Korpus des Rovers.
-Dieses soll die Energiegewinnung aus Sonnenlicht von Curiosity abbilden, wenngleich der Nennstrom des Moduls mit $250\ mA$ auf das entwickelte Gesamtsystem keine großen Auswirkungen hätte.
-Aus einer Messung geht hervor, dass in das Gesamtsystem bereits im Leerlauf (alle BrickPis und Raspberry Pi eingeschaltet, keine Motoren aktiv) ein Strom von rund $1,3\ A$ fließt.
-% TODO bei Gelegenheit noch Strom unter Last bestimmen!
+Dieses soll die Energiegewinnung aus Sonnenlicht von Curiosity abbilden, wenngleich die Nennleistung des Moduls mit $750\ mW$ auf das entwickelte Gesamtsystem keine großen Auswirkungen hätte.
+Aus einer Messung geht hervor, dass in das Gesamtsystem bereits im Leerlauf (alle BrickPis und Raspberry Pi eingeschaltet, keine Motoren aktiv) eine Leistungsaufnahme von rund $6{,}8\ W$ hat.
+Unter Volllast (alle BrickPis und Raspberry Pi eingeschaltet, alle Motoren laufen auf $100\ \%$ Leistung) nimmt das Gesamtsystem knapp $21\ W$ auf.
+Das Modul wird daher in der aktuellen Entwicklungsstufe nicht zur Stromerzeugung genutzt.
+Weiterhin unterscheidet sich das reale Modell durch kleinere Dekorationselemente auf dem Korpus vom digitalen Modell.
+Diese haben allerdings keinen Einfluss auf die Funktionalität.
 
 Darüber hinaus ist in dieser Ansicht ein guter Überblick über die Platzierung der einzelnen Räder und Motoren in Relation zum Korpus gegeben.
 Um den Rover seitlich zu stabilisieren, sind die beiden mittleren Räder etwas weiter außen platziert.
 Alle Räder liegen jeweils mehrere Zentimeter vom Korpus entfernt am Boden auf.
 
 Im \enquote{Bienenstock} am Heck des Rovers (in den Abbildungen \ref{fig:roversiderender}, \ref{fig:roversidefoto}, \ref{fig:rovertoprender} und \ref{fig:rovertopfoto} links zu sehen) befindet sich beim realen Vorbild ein Atomreaktor, auf den in dieser Entwicklung allerdings verzichtet wurde.
-Stattdessen lässt sich in diesem sehr gut der verwendete Lautsprecher (siehe dazu Abschnitt \ref{sec:inst_konf_raspi} und Abbildung \ref{fig:lautsprecher}) unterbringen. % TODO Bild vom Lautsprecher?
+Stattdessen lässt sich in diesem sehr gut der verwendete Lautsprecher (siehe dazu Abschnitt \ref{sec:inst_konf_raspi} und Abbildung \ref{fig:lautsprecher}) unterbringen. 
