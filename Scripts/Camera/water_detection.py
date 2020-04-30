@@ -3,34 +3,33 @@
 """
 water_detection.py
 This module of Mars Science Laboratory Curiosity Rover (DHBW Mosbach) implements
-a hue-based object recognition of blue 1x1-LEGO-Bricks (3007).
+a hue-based object recognition of blue LEGO-Bricks (e. g. 3007).
 """
 
-__author__      = "Niklas Koopmann"
-__email__       = "nik.koopmann.17@lehre.mosbach.dhbw.de"
-__version__     = "1.0.0"
-__maintainer__  = "TBD"
-__status__      = "Production"
-
-
-
-#
-# TODO: Maybe start a timer once water has been found.
-# Until the timer is up, block water_in_sight function
-# to avoid "spam" from the speak package.
-#
-
-import cv2
-import numpy as np
 import time
 
-# using picamera
-# basic tutorial: https://maker.pro/raspberry-pi/tutorial/how-to-create-object-detection-with-opencv
+import config
+import cv2
+import numpy as np
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 
+__author__ = "Niklas Koopmann"
+__email__ = "nik.koopmann.17@lehre.mosbach.dhbw.de"
+__version__ = "1.0.0"
+__maintainer__ = "TBD"
+__status__ = "Production"
+
+
+#
+# TODO: Maybe start a timer once water has been found. Until the timer is up,
+# block water_in_sight function to avoid "spam" from the speak package.
+#
+
+# using picamera
+# basic tutorial: https://maker.pro/raspberry-pi/tutorial/how-to-create-object-detection-with-opencv
+
 # from skimage import morphology # may be used for further image processing
-import config
 
 # create instance of PiCamera from the drivers -> automatically matches
 # connected cam at CSI
@@ -61,14 +60,17 @@ def camera_capture(callback_func):
         # get current image array
         image = frame.array
 
-        # convert image from bgr (blue, green, red) to hsv (hue, saturation, value) colour space
+        # convert image from bgr (blue, green, red) to hsv (hue, saturation,
+        # value) colour space
         hsvImage = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
-        # get target colour data and threshold for recognition from configuration
+        # get target colour data and threshold for recognition from
+        # configuration
         bgr = [config.TARGET_BLUE, config.TARGET_GREEN, config.TARGET_RED]
         hueThreshold = config.RECOGNITION_TOLERANCE
 
-        # convert target colour information from bgr (blue, green, red) to hsv (hue, saturation, value) colour space
+        # convert target colour information from bgr (blue, green, red) to hsv
+        # (hue, saturation, value) colour space
         hsvColor = cv2.cvtColor(np.uint8([[bgr]]), cv2.COLOR_BGR2HSV)[0][0]
 
         # define min/max hsv colours for detection
@@ -84,13 +86,15 @@ def camera_capture(callback_func):
         #cv2.erode(mask, mask, erodeElement)
         #cv2.dilate(mask, mask, dilateElement)
 
-        # find contours in the frame to filter out some noise and roughly estimate number of water objects
+        # find contours in the frame to filter out some noise and roughly
+        # estimate number of water objects
         (cnts, _) = cv2.findContours(mask.copy(),
                                      cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
         #mask = cv2.drawContours(mask, cnts, -1, (240, 0, 159), 3)
 
-        # if at least one contour was found, water is expected to be in the frame
-        # water_in_sight is used to avoid "spam" while water stays in sight
+        # if at least one contour was found, water is expected to be in the
+        # frame water_in_sight is used to avoid "spam" while water stays in
+        # sight
         if len(cnts) > 0 and callback_func and not water_in_sight:
             water_in_sight = True
             callback_func()
