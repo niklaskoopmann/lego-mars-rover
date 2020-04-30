@@ -22,8 +22,9 @@ __status__ = "Production"
 
 
 #
-# TODO: Maybe start a timer once water has been found. Until the timer is up,
-# block water_in_sight function to avoid "spam" from the speak package.
+# TODO:
+# Maybe start a timer once water has been found. Until the timer is up, block 
+# execu of water_in_sight function to avoid "spam" from the speak package.
 #
 
 # using picamera

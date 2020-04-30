@@ -1,13 +1,26 @@
-# system libs
+#!/usr/bin/env python
+
+"""
+rover.py
+This is the base script of Mars Science Laboratory Curiosity Rover (DHBW
+Mosbach). It starts all the necessary threads and tears down all components
+after the execution is cancelled.
+"""
+
 import threading
 import time
 
-# user-defined libs
 import config
+from Actuator.actuator_control import stop_driving
 from Camera import water_detection
 from Voice_Output import speak
 from Voice_Recognition import voice_recognition
-from Actuator.actuator_control import stop_driving
+
+__author__ = "Niklas Koopmann"
+__email__ = "nik.koopmann.17@lehre.mosbach.dhbw.de"
+__version__ = "1.0.0"
+__maintainer__ = "TBD"
+__status__ = "Production"
 
 # setup thread for camera capture
 # callback is the function to say "Water found"
