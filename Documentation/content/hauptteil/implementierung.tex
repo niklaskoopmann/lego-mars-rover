@@ -199,7 +199,7 @@ Die Farbeigenschaften des LEGO-Steins werden in Komponenten für rote, grüne un
 Das Python-Skript berechnet für die \acs{rgb}-Farbangaben die entsprechenden \acsu{hsv}-Werte (\acl{hsv}).
 In letzterer Darstellung ist die Information über tatsächliche Farbe nur noch im Hue-Wert ($0$ bis $255$) hinterlegt, sodass für diesen eine bestimmte Abweichung (Standard: $\pm 10$) definiert werden kann.
 Die Sättigung (Saturation) und der Hellwert (Value) (beide ebenfalls von $0$ bis $255$ definiert) werden in einem breiten Spektrum toleriert:
-Standardmäßig lässt das Skript hier Werte von mindestens $80$ und höchstens $255$ zu.
+Standardmäßig lässt das Skript hier Werte von mindestens $100$ und höchstens $255$ zu.
 Mithilfe dieser Parameter wird eine solide Erkennung der Präsenz der LEGO-Steine gewährleistet.
 Auf Basis dieser Farbwerte wird zunächst das Eingangsbild gefiltert, sodass ein Binärbild (Maske) entsteht:
 Alle mit dem definierten Blauwert erkannten Pixel sind daraufhin weiß (1), die anderen schwarz (0).
