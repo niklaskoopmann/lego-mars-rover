@@ -18,12 +18,13 @@ VIDEO_CAPTURE_WIDTH = 1280  # pixels
 VIDEO_CAPTURE_HEIGHT = 720  # pixels
 VIDEO_CAPTURE_FRAMERATE = 60  # Hz/fps
 
-# color for object recognition
+# colour for object recognition
 # blue lego brick: RGBA(0, 87, 166, 1)
 TARGET_RED = 0
 TARGET_GREEN = 87
 TARGET_BLUE = 166
-RECOGNITION_TOLERANCE = 10  # plus/minus on hue value
+RECOGNITION_TOLERANCE = 10  # plus/minus on hue
+MIN_S_V = 100  # min saturation and value
 
 # text-to-speech configuration
 TTS_VOLUME = 1.0  # on a scale from 0 to 1

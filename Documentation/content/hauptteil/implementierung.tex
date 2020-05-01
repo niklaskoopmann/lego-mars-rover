@@ -86,7 +86,7 @@ Eine Lenkung der mittleren Räder ist zum aktuellen Zeitpunkt nicht notwendig, k
 
 In Abbildung \ref{fig:brickpistack} ist die standardmäßige Belegung der drei BrickPis sowie deren Seriennummern dargestellt.
 Die Spalten \texttt{A} bis \texttt{D} entsprechen den Motorsteuerausgängen \texttt{MA} bis \texttt{MD} des BrickPi 3.
-Eine Übersicht über dessen verschiedene Anschlüsse im Einzelnen ist der Vollständigkeit halber in Abbildung \ref{fig:brickpi3ports} abgebildet.
+Eine Übersicht über dessen verschiedene Anschlüsse im Einzelnen ist der Vollständigkeit halber in Abbildung \ref{fig:brickpi3ports} zu sehen.
 Die Bezeichnungen der Motoren anhand ihrer Richtung (vorn, hinten, links, rechts) sind dabei unter der Voraussetzung, dass der Rover in Fahrtrichtung betrachtet wird, zutreffend.
 
 \begin{figure}
@@ -201,6 +201,18 @@ In letzterer Darstellung ist die Information über tatsächliche Farbe nur noch 
 Die Sättigung (Saturation) und der Hellwert (Value) (beide ebenfalls von $0$ bis $255$ definiert) werden in einem breiten Spektrum toleriert:
 Standardmäßig lässt das Skript hier Werte von mindestens $100$ und höchstens $255$ zu.
 Mithilfe dieser Parameter wird eine solide Erkennung der Präsenz der LEGO-Steine gewährleistet.
+In Quelltext \ref{sc:configcolours} ist ein Auszug aus dem Konfigurationsskript, in dem die oben beschriebenen Werte festgelegt werden, beispielhaft dargestellt.
+
+\begin{lstlisting}[caption={Auszug aus der Konfiguration mit Standardwerten für die farbbasierte Objekterkennung}, label={sc:configcolours}, numbers=none, language={Python}, float, abovecaptionskip=1em]
+# colour for object recognition
+# blue lego brick: RGBA(0, 87, 166, 1)
+TARGET_RED = 0
+TARGET_GREEN = 87
+TARGET_BLUE = 166
+RECOGNITION_TOLERANCE = 10  # plus/minus on hue
+MIN_S_V = 100  # min saturation and value
+\end{lstlisting}
+
 Auf Basis dieser Farbwerte wird zunächst das Eingangsbild gefiltert, sodass ein Binärbild (Maske) entsteht:
 Alle mit dem definierten Blauwert erkannten Pixel sind daraufhin weiß (1), die anderen schwarz (0).
 Anschließend werden alle vorhandenen Konturen auf der Maske bestimmt.

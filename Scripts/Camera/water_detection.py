@@ -23,7 +23,7 @@ __status__ = "Production"
 
 #
 # TODO:
-# Maybe start a timer once water has been found. Until the timer is up, block 
+# Maybe start a timer once water has been found. Until the timer is up, block
 # execu of water_in_sight function to avoid "spam" from the speak package.
 #
 
@@ -75,7 +75,8 @@ def camera_capture(callback_func):
         hsvColor = cv2.cvtColor(np.uint8([[bgr]]), cv2.COLOR_BGR2HSV)[0][0]
 
         # define min/max hsv colours for detection
-        minHSV = np.array([hsvColor[0] - hueThreshold, 100, 100])
+        minHSV = np.array([hsvColor[0] - hueThreshold,
+                           config.MIN_S_V, config.MIN_S_V])
         maxHSV = np.array([hsvColor[0] + hueThreshold, 255, 255])
 
         # filter out everything that is not within tolerance
