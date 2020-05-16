@@ -6,15 +6,15 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 
 ### Meilensteine
 
-| # | Meilenstein | Termin | Status |
-| --- | --- | --- | --- |
-| M01 | Basis-Installation und Konfiguration Raspberry Pi | 20.10.2019 | DONE |
+| #    | Meilenstein | Termin | Status |
+| ---- | --- | --- | --- |
+| M01  | Basis-Installation und Konfiguration Raspberry Pi | 20.10.2019 | DONE |
 | Mx01 | Entwurf in BrickLink Studio | 27.10.2019 | DONE |
-| M02 | Steuerung Rover über Sprachkommandos | 03.11.2019 | DONE |
-| M03 | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | DONE |
-| M04 | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | 66 % |
-| M05 | Sechsrädriges Antriebssystem für unebenes Gelände | 01.12.2019 | TODO |
-| M06 | Dokumentation mit BrickLink Studio (Version 2.0.10) | 08.12.2019 | TODO |
+| M02  | Steuerung Rover über Sprachkommandos | 03.11.2019 | DONE |
+| M03  | Basis-Installation und Konfiguration Pixy-Kamera | 10.11.2019 | DONE |
+| M04  | Erkennung von Wasserobjekten und Sprachausgabe | 24.11.2019 | DONE |
+| M05  | Sechsrädriges Antriebssystem für unebenes Gelände | 01.12.2019 | DONE |
+| M06  | Dokumentation mit BrickLink Studio (Version 2.0.10) | 08.12.2019 | DONE |
 
 #### Definitions of Done
 - DOD-M01: 
@@ -35,21 +35,12 @@ Repository contains LaTeX sources of the paper as well as Python source code wri
 
 #### Backlog
 - Sicherstellung der "Unumkippbarkeit" des Rovers -> BrickLink-Modell überarbeiten
-![alt text](Images/Mars_Rover_V3.png "Mars Rover Curiosity")
-- Greifarm und -steuerung 
-- ggf. abweichen vom BrickPi zu MotoPi (https://www.reichelt.de/raspberry-pi-shield-motopi-motorsteuerung-rpi-shd-motopi-p202551.html)
-- passendes Mikrofon finden und ggf. bestellen
-- Räder des Rovers bestellen
-- PixyCam mithilfe von blauen 1x1-LEGO-Blöcken (-> "Wasserobjekte") trainieren, sobald diese eintreffen
+![alt text](Images/20200429_Mars_Rover_V5_front.png "Mars Rover Curiosity")
+- Greifarm und -steuerung nachträglich ergänzen
+- passendes Mikrofon besorgen
+- neuen Lautsprecher (höhere Lautstärke)
 
-### Benötigte Teile (unverbindlich)
-- 6x Rad-Reifen-Kombi 23799/23800 (zu bestellen)
-- 6x Radadapter 92909 (zu bestellen)
-- 5x EV3-Motor Medium (Hr. Benseler)
-- 12x Liftarm Double Bent 32009
-- ca. 56x Pin Connector 75535
-
-### Erstattung für privat ausgelegte Anschaffungen
+### Ausstehende Erstattungen für privat ausgelegte Elemente
 - USB-Soundkarte Sabrent (EUR 5,94)
 - diverse Teile von BricksWorld XXL (EUR 3,74)
 - Teile von 20th Century Bricks (EUR 4,13)
