@@ -1,3 +1,3 @@
 # Documentation
 
-Directory contains TeX sources for full, formal documentation in German.
+Directory contains full, formal documentation in German.
