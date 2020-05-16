@@ -2,7 +2,7 @@
 
 ![alt text](Images/mars_rover.jpg "Mars Rover")
 
-Repository contains LaTeX sources of the paper as well as Python source code written to make the Rover rove. :rocket:
+Repository contains the documentation paper as well as Python source code written to make the Rover rove. :rocket:
 
 ### Meilensteine
 
